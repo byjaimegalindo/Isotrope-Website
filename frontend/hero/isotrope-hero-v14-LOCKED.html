@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>ISOTROPE — Hero V6 Responsive</title>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600&display=swap');
+
+  :root {
+    --bg:#08090B;
+    --white:#FFFFFF;
+    --purple:#7F00B2;
+    --purple-hover:#690094;
+    --purple-dark:#4E006D;
+
+    --gutter-desktop: clamp(24px, 2vw, 38px);
+    --gutter-tablet: 28px;
+    --gutter-mobile: 18px;
+  }
+
+  * { box-sizing:border-box; }
+
+  html,body {
+    margin:0;
+    width:100%;
+    min-height:100%;
+    background:var(--bg);
+    font-family:'Manrope', Arial, sans-serif;
+  }
+
+  body { overflow-x:hidden; }
+
+  .hero {
+    position:relative;
+    width:100%;
+    min-height:100svh;
+    overflow:hidden;
+    isolation:isolate;
+    background:var(--bg);
+  }
+
+  .hero__video {
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:-3;
+    transform:scale(1.01);
+    filter:contrast(1.06) brightness(.72);
+  }
+
+  .hero__shade {
+    position:absolute;
+    inset:0;
+    z-index:-2;
+    pointer-events:none;
+    background:
+      linear-gradient(90deg,
+        rgba(4,5,7,.72) 0%,
+        rgba(4,5,7,.38) 36%,
+        rgba(4,5,7,.14) 68%,
+        rgba(4,5,7,.06) 100%
+      ),
+      linear-gradient(180deg,
+        rgba(4,5,7,.08) 0%,
+        rgba(4,5,7,.02) 53%,
+        rgba(4,5,7,.58) 100%
+      );
+  }
+
+  /* =========================================================
+     DESKTOP > 1000px
+     Edge-to-edge composition with controlled gutters.
+     ========================================================= */
+  .hero__content {
+    width:100%;
+    min-height:100svh;
+    margin:0;
+    padding:
+      108px
+      var(--gutter-desktop)
+      46px;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+  }
+
+  .hero__eyebrow {
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin:0 0 22px;
+    color:rgba(255,255,255,.76);
+    font-size:13px;
+    font-weight:600;
+    line-height:1;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+  }
+
+  .hero__eyebrow::before {
+    content:"";
+    width:34px;
+    height:1px;
+    border-radius:99px;
+    background:rgba(255,255,255,.92);
+  }
+
+  .headline {
+    position:relative;
+    width:100%;
+    max-width:none;
+    margin:0;
+    font-family:'Instrument Sans', Arial, sans-serif;
+    font-size:clamp(72px, 8.8vw, 178px);
+    font-weight:700;
+    line-height:.89;
+    letter-spacing:-.032em;
+    text-transform:uppercase;
+    text-wrap:balance;
+  }
+
+  .xray-line {
+    position:relative;
+    display:block;
+    width:max-content;
+    max-width:100%;
+    color:#fff;
+    mix-blend-mode:difference;
+    filter:contrast(1.16);
+  }
+
+  .xray-line::before {
+    content:attr(data-text);
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    color:transparent;
+    -webkit-text-stroke:.75px rgba(255,255,255,.42);
+    text-shadow:
+      0 0 5px rgba(255,255,255,.11),
+      0 0 13px rgba(255,255,255,.06);
+    mix-blend-mode:screen;
+    opacity:.68;
+  }
+
+  .xray-line::after {
+    content:attr(data-text);
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    color:transparent;
+    background:
+      linear-gradient(
+        108deg,
+        rgba(255,255,255,.01) 0%,
+        rgba(255,255,255,.05) 31%,
+        rgba(255,255,255,.46) 48%,
+        rgba(255,255,255,.07) 58%,
+        rgba(255,255,255,.01) 100%
+      );
+    background-size:230% 100%;
+    background-position:145% 0;
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+    mix-blend-mode:screen;
+    animation:xraySweep 8.2s cubic-bezier(.45,0,.18,1) infinite;
+  }
+
+  @keyframes xraySweep {
+    0%,62% {
+      background-position:145% 0;
+      opacity:.10;
+    }
+    69% { opacity:.55; }
+    84% { opacity:.30; }
+    96%,100% {
+      background-position:-120% 0;
+      opacity:.08;
+    }
+  }
+
+  .hero__bottom {
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:48px;
+    margin-top:20px;
+  }
+
+  .hero__copy {
+    max-width:600px;
+    margin:0;
+    color:rgba(255,255,255,.79);
+    font-size:clamp(17px,1.15vw,20px);
+    line-height:1.58;
+    font-weight:400;
+    letter-spacing:-.012em;
+  }
+
+  .hero__actions {
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+
+  .btn {
+    position:relative;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:50px;
+    padding:0 28px;
+    border-radius:999px;
+    text-decoration:none;
+    text-transform:uppercase;
+    letter-spacing:.085em;
+    font-size:12px;
+    font-weight:700;
+    white-space:nowrap;
+    transition:
+      background-color .28s ease,
+      border-color .28s ease,
+      color .28s ease;
+  }
+
+  .btn > span {
+    position:relative;
+    z-index:1;
+  }
+
+  .btn--primary {
+    color:#fff;
+    background:var(--purple);
+    border:1px solid var(--purple);
+  }
+
+  .btn--primary:hover {
+    background:var(--purple);
+    border-color:#fff;
+  }
+
+  .btn--secondary {
+    color:#fff;
+    background:rgba(10,10,12,.18);
+    border:1px solid rgba(255,255,255,.34);
+    backdrop-filter:blur(8px);
+  }
+
+  .btn--secondary:hover {
+    background:rgba(10,10,12,.24);
+    border-color:var(--purple);
+  }
+
+  @media (max-width:1000px) {
+    .hero__content {
+      padding:
+        96px
+        var(--gutter-tablet)
+        34px;
+    }
+
+    .headline {
+      font-size:clamp(58px, 11.7vw, 112px);
+      line-height:.92;
+      letter-spacing:-.030em;
+    }
+
+    .hero__eyebrow {
+      margin-bottom:18px;
+    }
+
+    .hero__bottom {
+      flex-direction:column;
+      align-items:flex-start;
+      gap:26px;
+      margin-top:20px;
+    }
+
+    .hero__copy {
+      max-width:560px;
+      font-size:18px;
+    }
+  }
+
+  @media (max-width:750px) {
+    .hero {
+      min-height:100svh;
+    }
+
+    .hero__content {
+      min-height:100svh;
+      padding:
+        84px
+        var(--gutter-mobile)
+        24px;
+    }
+
+    .hero__eyebrow {
+      max-width:90%;
+      gap:9px;
+      margin-bottom:16px;
+      font-size:11px;
+      line-height:1.35;
+      letter-spacing:.125em;
+    }
+
+    .hero__eyebrow::before {
+      width:24px;
+      flex:0 0 24px;
+    }
+
+    .headline {
+      font-size:clamp(47px, 15vw, 78px);
+      line-height:.94;
+      letter-spacing:-.028em;
+    }
+
+    .hero__bottom {
+      gap:22px;
+      margin-top:18px;
+    }
+
+    .hero__copy {
+      max-width:100%;
+      font-size:17px;
+      line-height:1.56;
+    }
+
+    .hero__actions {
+      width:100%;
+      gap:8px;
+    }
+
+    .btn {
+      min-height:48px;
+      padding-left:18px;
+    }
+  }
+
+  @media (max-width:520px) {
+    .hero__actions {
+      flex-direction:column;
+      align-items:stretch;
+    }
+
+    .btn {
+      width:100%;
+      justify-content:space-between;
+    }
+  }
+
+  @media (prefers-reduced-motion:reduce) {
+    .xray-line::after { animation:none; }
+    .btn { transition:none; }
+  }
+
+  /* =========================================================
+     CINEMATIC SCROLL V7
+     CRITICAL: preserves the original negative/difference effect.
+     No transform/opacity/will-change on .hero__content.
+     ========================================================= */
+  .hero__content {
+    position:relative;
+    top:0;
+  }
+
+  .hero__video {
+    will-change:transform, filter;
+  }
+
+  .hero__blackout {
+    position:absolute;
+    inset:0;
+    z-index:50;
+    pointer-events:none;
+    background:#000;
+    opacity:0;
+    will-change:opacity;
+  }
+
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+
+  <video class="hero__video"
+         autoplay
+         muted
+         loop
+         playsinline
+         preload="metadata">
+    <source src="https://video.wixstatic.com/video/047d6b_609aac39aa5f4f6791e03351f4089d25/1080p/mp4/file.mp4" type="video/mp4">
+  </video>
+
+  <div class="hero__shade"></div>
+  <div class="hero__blackout" id="heroBlackout" aria-hidden="true"></div>
+
+  <div class="hero__content">
+
+    <p class="hero__eyebrow">
+      Technical access · Construction · Maintenance
+    </p>
+
+    <h1 class="headline" aria-label="Access is only the beginning">
+      <span class="xray-line" data-text="ACCESS IS ONLY">ACCESS IS ONLY</span>
+      <span class="xray-line" data-text="THE BEGINNING.">THE BEGINNING.</span>
+    </h1>
+
+    <div class="hero__bottom">
+      <p class="hero__copy">
+        Safe access and technical expertise for construction, maintenance
+        and remediation in hard-to-reach environments.
+      </p>
+
+      <div class="hero__actions">
+
+        <a class="btn btn--primary" href="#callback">
+          <span>Request a callback</span>
+        </a>
+
+        <a class="btn btn--secondary" href="#consultation">
+          <span>Book a consultation</span>
+        </a>
+
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<script>
+(() => {
+  const content  = document.querySelector('.hero__content');
+  const video    = document.querySelector('.hero__video');
+  const blackout = document.getElementById('heroBlackout');
+
+  if (!content || !video || !blackout) return;
+
+  const clamp = (v, min = 0, max = 1) => Math.min(Math.max(v, min), max);
+  const range = (v, start, end) => clamp((v - start) / (end - start));
+  const smooth = (t) => t * t * (3 - 2 * t);
+
+  function smoother(t) {
+    return t * t * t * (t * (t * 6 - 15) + 10);
+  }
+
+  function renderScroll(scrollVh) {
+    const s = Math.max(Number(scrollVh) || 0, 0);
+
+    /* PHASE 1 — 0.00 → 1.18 viewport scrolls */
+    const rawExit = range(s, 0.00, 1.18);
+
+    const exitP =
+      (rawExit * 0.78) +
+      (smooth(rawExit) * 0.22);
+
+    const travelPx =
+      -(window.innerHeight * 1.15) * exitP;
+
+    content.style.top =
+      `${travelPx.toFixed(2)}px`;
+
+    /* PHASE 2 — 1.18 → 1.78 */
+    const holdP =
+      smooth(range(s, 1.18, 1.78));
+
+    const scale =
+      1.01 + (0.016 * holdP);
+
+    const brightness =
+      0.72 - (0.08 * holdP);
+
+    const contrast =
+      1.06 + (0.012 * holdP);
+
+    video.style.transform =
+      `scale(${scale.toFixed(4)})`;
+
+    video.style.filter =
+      `contrast(${contrast.toFixed(4)}) brightness(${brightness.toFixed(4)})`;
+
+    /* PHASE 3 — 1.10 → 1.82: earlier, smoother fade to black */
+    const blackP =
+      smooth(range(s, 1.10, 1.82));
+
+    blackout.style.opacity =
+      blackP.toFixed(4);
+
+    const finalBrightness =
+      Math.max(
+        0.10,
+        brightness - (0.44 * blackP)
+      );
+
+    video.style.filter =
+      `contrast(${contrast.toFixed(4)}) brightness(${finalBrightness.toFixed(4)})`;
+
+    /* PHASE 4 — 1.82+ */
+    if (s >= 1.82) {
+      blackout.style.opacity = '1';
+    }
+  }
+
+  window.addEventListener('message', (event) => {
+    const data = event.data;
+
+    if (!data || data.type !== 'ISOTROPE_HERO_SCROLL') return;
+
+    if (typeof data.scrollVh === 'number') {
+      renderScroll(data.scrollVh);
+      return;
+    }
+
+    if (typeof data.progress === 'number') {
+      const legacyScrollVh = clamp(data.progress, 0, 1) * 2.60;
+      renderScroll(legacyScrollVh);
+    }
+  });
+
+  try {
+    window.parent.postMessage(
+      { type: 'ISOTROPE_HERO_READY' },
+      '*'
+    );
+  } catch (_) {}
+
+  renderScroll(0);
+})();
+</script>
+
+</body>
+</html>
