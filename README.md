@@ -55,6 +55,10 @@ Custom Embed ID:
 
 Current confirmed revision: `5`
 
+Tracked source snapshot:
+
+`wix/custom-embeds/isotrope-native-hero-scroll-sync-rev5.html`
+
 The Home page Velo file is intentionally inactive for Hero scroll synchronization. Do not reintroduce `getBoundingRect()` polling while the native bridge is active.
 
 ## Home state
@@ -86,10 +90,14 @@ frontend/
 velo/
   pages/
     home.js
+wix/
+  custom-embeds/
+    isotrope-native-hero-scroll-sync-rev5.html
 docs/
   design-system.md
   implementation-notes.md
   checkpoints/
+    2026-09-08.md
 ```
 
 ## Working rule
