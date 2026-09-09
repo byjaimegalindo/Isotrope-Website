@@ -1,0 +1,298 @@
+<script>
+(function () {
+  var heroWindow = null;
+  var activeScroller = null;
+  var rafId = 0;
+  var burstUntil = 0;
+  var lastSentY = -1;
+  var lastSentVh = -1;
+
+  /* -----------------------------
+     HEADER AUTO-HIDE
+     down = hide / up = show
+     ----------------------------- */
+  var headerEl = null;
+  var headerHidden = false;
+  var lastHeaderY = 0;
+  var direction = 0;
+  var directionTravel = 0;
+
+  var HEADER_HIDE_AFTER_Y = 72;
+  var HEADER_HIDE_TRAVEL = 10;
+  var HEADER_SHOW_TRAVEL = 6;
+  var HEADER_MIN_DELTA = 0.75;
+
+  function isElement(value) {
+    return value && value.nodeType === 1;
+  }
+
+  function findHeader() {
+    if (headerEl && document.documentElement.contains(headerEl)) {
+      return headerEl;
+    }
+
+    var selectors = [
+      'header',
+      '[data-testid="SITE_HEADER"]',
+      '#SITE_HEADER',
+      '[id^="SITE_HEADER"]',
+      '[id*="SITE_HEADER"]'
+    ];
+
+    var best = null;
+    var bestScore = -1;
+
+    for (var s = 0; s < selectors.length; s++) {
+      var nodes = document.querySelectorAll(selectors[s]);
+
+      for (var i = 0; i < nodes.length; i++) {
+        var node = nodes[i];
+        var rect = node.getBoundingClientRect();
+        var style = window.getComputedStyle(node);
+
+        if (
+          rect.height < 20 ||
+          rect.width < Math.max(window.innerWidth * 0.45, 280) ||
+          style.display === 'none' ||
+          style.visibility === 'hidden'
+        ) {
+          continue;
+        }
+
+        var score = 0;
+        if (node.tagName === 'HEADER') score += 10;
+        if (/SITE_HEADER/i.test(node.id || '')) score += 8;
+        if (node.getAttribute('data-testid') === 'SITE_HEADER') score += 8;
+        if (rect.top <= 20) score += 4;
+        score += Math.min(rect.width / 1000, 2);
+
+        if (score > bestScore) {
+          best = node;
+          bestScore = score;
+        }
+      }
+    }
+
+    if (!best) return null;
+
+    headerEl = best;
+
+    headerEl.style.setProperty(
+      'transition',
+      'translate 360ms cubic-bezier(0.22, 1, 0.36, 1)',
+      'important'
+    );
+    headerEl.style.setProperty('will-change', 'translate');
+    headerEl.style.setProperty('translate', headerHidden ? '0 -110%' : '0 0', 'important');
+
+    return headerEl;
+  }
+
+  function setHeaderHidden(hidden) {
+    var header = findHeader();
+    if (!header || headerHidden === hidden) return;
+
+    headerHidden = hidden;
+    header.style.setProperty(
+      'translate',
+      hidden ? '0 -110%' : '0 0',
+      'important'
+    );
+  }
+
+  function updateHeader(scrollY) {
+    var header = findHeader();
+    if (!header) return;
+
+    if (scrollY <= 8) {
+      direction = 0;
+      directionTravel = 0;
+      lastHeaderY = scrollY;
+      setHeaderHidden(false);
+      return;
+    }
+
+    var delta = scrollY - lastHeaderY;
+    lastHeaderY = scrollY;
+
+    if (Math.abs(delta) < HEADER_MIN_DELTA) return;
+
+    var nextDirection = delta > 0 ? 1 : -1;
+
+    if (nextDirection !== direction) {
+      direction = nextDirection;
+      directionTravel = 0;
+    }
+
+    directionTravel += Math.abs(delta);
+
+    if (
+      direction === 1 &&
+      scrollY > HEADER_HIDE_AFTER_Y &&
+      directionTravel >= HEADER_HIDE_TRAVEL
+    ) {
+      setHeaderHidden(true);
+      directionTravel = 0;
+      return;
+    }
+
+    if (
+      direction === -1 &&
+      directionTravel >= HEADER_SHOW_TRAVEL
+    ) {
+      setHeaderHidden(false);
+      directionTravel = 0;
+    }
+  }
+
+  /* -----------------------------
+     HERO NATIVE SCROLL SYNC
+     keep the working revision-4 logic
+     ----------------------------- */
+  function getDocumentScrollY() {
+    var scrolling = document.scrollingElement;
+    var values = [
+      scrolling && scrolling.scrollTop,
+      document.documentElement && document.documentElement.scrollTop,
+      document.body && document.body.scrollTop,
+      window.pageYOffset,
+      window.scrollY
+    ];
+
+    for (var i = 0; i < values.length; i++) {
+      var value = Number(values[i]);
+      if (Number.isFinite(value) && value > 0) return value;
+    }
+
+    return 0;
+  }
+
+  function getScrollY() {
+    if (activeScroller && isElement(activeScroller)) {
+      var localY = Number(activeScroller.scrollTop);
+      if (Number.isFinite(localY)) return Math.max(localY, 0);
+    }
+
+    return Math.max(getDocumentScrollY(), 0);
+  }
+
+  function getViewportHeight() {
+    return Math.max(
+      window.innerHeight ||
+      (window.visualViewport && window.visualViewport.height) ||
+      document.documentElement.clientHeight ||
+      1,
+      1
+    );
+  }
+
+  function sendState(force) {
+    var scrollY = getScrollY();
+    var vh = getViewportHeight();
+
+    updateHeader(scrollY);
+
+    if (!heroWindow) return;
+
+    if (!force && Math.abs(scrollY - lastSentY) < 0.05 && Math.abs(vh - lastSentVh) < 0.05) {
+      return;
+    }
+
+    var scrollVh = scrollY / vh;
+    var progress = Math.min(Math.max(scrollVh / 2.60, 0), 1);
+
+    try {
+      heroWindow.postMessage({
+        type: 'ISOTROPE_HERO_SCROLL',
+        scrollVh: scrollVh,
+        progress: progress
+      }, '*');
+
+      lastSentY = scrollY;
+      lastSentVh = vh;
+    } catch (e) {
+      heroWindow = null;
+    }
+  }
+
+  function frame(now) {
+    rafId = 0;
+    sendState(false);
+
+    if (now < burstUntil) {
+      rafId = window.requestAnimationFrame(frame);
+    }
+  }
+
+  function startBurst(ms) {
+    burstUntil = Math.max(burstUntil, performance.now() + (ms || 180));
+
+    if (!rafId) {
+      rafId = window.requestAnimationFrame(frame);
+    }
+  }
+
+  function setScrollerFromEvent(event) {
+    var target = event && event.target;
+
+    if (isElement(target) && typeof target.scrollTop === 'number') {
+      activeScroller = target;
+      return;
+    }
+
+    if (
+      target === document ||
+      target === window ||
+      target === document.documentElement ||
+      target === document.body
+    ) {
+      activeScroller = document.scrollingElement || document.documentElement;
+    }
+  }
+
+  function onScroll(event) {
+    setScrollerFromEvent(event);
+    startBurst(220);
+  }
+
+  window.addEventListener('message', function (event) {
+    var data = event && event.data;
+
+    if (!data || data.type !== 'ISOTROPE_HERO_READY') return;
+
+    heroWindow = event.source;
+    lastSentY = -1;
+    lastSentVh = -1;
+
+    sendState(true);
+    startBurst(300);
+  });
+
+  document.addEventListener('scroll', onScroll, true);
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  window.addEventListener('wheel', function () {
+    startBurst(280);
+  }, { passive: true, capture: true });
+
+  window.addEventListener('touchmove', function () {
+    startBurst(300);
+  }, { passive: true, capture: true });
+
+  window.addEventListener('resize', function () {
+    lastSentVh = -1;
+    headerEl = null;
+    findHeader();
+    startBurst(220);
+  }, { passive: true });
+
+  window.addEventListener('load', function () {
+    findHeader();
+    startBurst(300);
+  }, { once: true });
+
+  findHeader();
+  setTimeout(findHeader, 250);
+  setTimeout(findHeader, 900);
+})();
+</script>
