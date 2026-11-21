@@ -138,7 +138,7 @@ function fitWord(){
  word.style.transform='scaleX(1)';
  const width=word.scrollWidth||word.getBoundingClientRect().width||1;
  const usable=document.getElementById('viewport').clientWidth*.97;
- word.style.transform='scaleX('+Math.min(1,usable/width).toFixed(5)+')';
+ word.style.transform='scaleX('+Math.min(1.8,usable/width).toFixed(5)+')';
 }
 function render(y){
  value=clamp(y,0,maxValue);
