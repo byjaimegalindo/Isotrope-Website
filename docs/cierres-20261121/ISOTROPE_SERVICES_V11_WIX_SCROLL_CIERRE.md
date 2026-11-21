@@ -78,3 +78,35 @@ Si se detecta un problema tras montar el HTML: deshabilitar el nuevo Custom Embe
 **Publicación de la sección: NO REALIZADA por esta intervención.**
 
 La sesión cierra con infraestructura de scroll instalada y estado auditable, no con una certificación de funcionamiento final en Wix.
+
+
+---
+
+## 8. INCIDENTE CRÍTICO Y ROLLBACK — 2026-11-21 (ACTUALIZACIÓN POSTERIOR)
+
+**Esta sección reemplaza el estado funcional indicado anteriormente.** El usuario reportó que, después de pegar la copia HTML adaptada, SERVICES no respondía al scroll y el Hero y Footer —anteriormente correctos— presentaban una regresión visible. **La integración V11 Wix entregada queda RECHAZADA / NO APROBADA. No reutilizarla ni reactivar su puente sin diagnóstico y prueba en Wix real.**
+
+### Medida correctiva confirmada por Wix API
+
+Se restauraron exactamente los estados de activación de los dos Custom Embeds de Services que había antes de la instalación de la nueva integración:
+
+| Embed | ID | Estado posterior al rollback | Revisión posterior |
+|---|---|---|---|
+| Nuevo puente `ISOTROPE Services V11 — Native Wix Page Scroll` | `d7e4553c-c54d-4461-8fcd-a67c43783e57` | **DESACTIVADO** | `3` |
+| Original `ISOTROPE Services Scroll Sync — Isolated` | `bfa68c4a-7b01-402d-91b4-b4149c41baee` | **ACTIVADO** | `6` |
+
+Una segunda lectura de Wix Custom Embeds verificó ambos estados (`ok:true`). El **Hero/Outro** conservó el embed `f46f2074-f2e8-4c80-a2c9-b0079cdbe4c6`, habilitado y rev `13`, sin cambios. El **Design System** siguió habilitado y rev `1`. El puente `Home 2 Story` siguió desactivado y rev `2`.
+
+### Diagnóstico técnico preliminar (sin inventar certificación)
+
+La copia `ISOTROPE_SERVICES_V11_WIX_INTEGRATION_FULL.html` añadía CSS y JS extra al V11. Cuando recibía `ISOTROPE_SERVICES_WIX_SCROLL`, aplicaba `overflow-y:hidden !important` a `html` y `body`, y reenviaba `wheel`/touch al padre con `preventDefault()`. La experiencia dependía de un handshake `READY/SCROLL` entre iframe y Custom Embed. **La simulación local no demostró que esos mensajes funcionaran en Wix Preview/Publish, ni garantizó el orden de carga o el scroll container correcto.** Por ello, el problema informado es compatible con una interrupción de ese canal: el iframe no recibe eventos de scroll y el estado queda fijo. La causa precisa de cada regresión en Hero/Footer sigue sin verificación visual en Wix.
+
+### Acciones y restricciones
+
+1. **No usar el archivo de integración entregado**, aunque permanezca guardado para auditoría; dejarlo identificado como fallido, no como build aprobada.
+2. Retirar de la sección Wix el HTML de prueba problemático o restaurar su contenido previo. Esto **no se ejecutó por API**, pues la API disponible de Custom Embeds no edita el contenido del HTML Component de Wix Studio.
+3. Tras esa retirada, recargar Preview/Publish y verificar Hero y Footer antes de ningún cambio nuevo.
+4. No modificar el master V11. Aislado cualquier diagnóstico, probar contra el HTML exacto aprobado y sin tocar los puentes compartidos ni impedir scroll nativo.
+5. **Prohibido marcar cierre funcional como aprobado** hasta pruebas de integración reales en Wix y aceptación explícita del usuario.
+
+**Estado post-incidente:** rollback Wix custom code CONFIRMADO; HTML Component en página a corregir manualmente; verificación visual de Hero, Footer y Services PENDIENTE. La documentación de cierre previa es historial de una entrega fallida, no aprobación vigente.
