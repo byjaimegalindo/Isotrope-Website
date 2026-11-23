@@ -10,6 +10,20 @@ ISOTROPE is positioned as a technical company that solves problems in hard-to-re
 
 Rope access is treated as an access method, not as the identity of the brand.
 
+## Estado vigente — SERVICES APROBADO (23-nov-2026)
+
+El cliente ha confirmado el funcionamiento completo de **Services** en Wix Studio. Se declara bloqueada la implementación vigente en estos **tres únicos archivos canónicos**:
+
+- [Velo Home — Services](velo/pages/home.js) (repeater nativo, límites `#line75`/`#line74`, foto y contador)
+- [Velo popup Services](velo/popups/services.js)
+- [HTML del popup Services](frontend/services/services-popup.html) (blanco, acentos del manual oficial)
+
+**Runbook y contrato de integración:** [docs/services/README.md](docs/services/README.md).
+
+**Manual de marca obligatorio para TODAS las siguientes secciones:** [docs/brand/README.md](docs/brand/README.md), respaldado por [transcripción completa del manual oficial 2026](docs/brand/ISOTROPE_BRAND_GUIDELINES_2026_SOURCE_TEXT.md). Para logos, fotografías y gráficos consultar también el PDF original de 37 páginas.
+
+**No restaurar versiones V11 de Services**, archivos de ensayo con scroll simulado ni bridges antiguos. Git conserva su historia de commits, pero ya no son fuentes vigentes. No alterar Hero/Outro, otras franjas, Custom Embeds, ni CMS fuera del cambio solicitado.
+
 ## Hero baselines
 
 Original protected visual baseline:
@@ -59,7 +73,7 @@ Tracked source snapshot:
 
 `wix/custom-embeds/isotrope-native-hero-scroll-sync-rev5.html`
 
-The Home page Velo file is intentionally inactive for Hero scroll synchronization. Do not reintroduce `getBoundingRect()` polling while the native bridge is active.
+Home Velo is intentionally inactive **for Hero scroll synchronization**. It now contains the independently approved **Services** controller. Its scoped `getBoundingRect()` polling runs only while the Services repeater is visible; do not apply it to Hero or replace Hero's native bridge.
 
 ## Home state
 
@@ -87,13 +101,23 @@ frontend/
     isotrope-hero-blackout-1.50-LOCKED.html
   icons/
     intro-features/
+frontend/
+  services/
+    services-popup.html
 velo/
   pages/
     home.js
+  popups/
+    services.js
 wix/
   custom-embeds/
     isotrope-native-hero-scroll-sync-rev5.html
 docs/
+  brand/
+    README.md
+    ISOTROPE_BRAND_GUIDELINES_2026_SOURCE_TEXT.md
+  services/
+    README.md
   design-system.md
   implementation-notes.md
   checkpoints/

@@ -1,5 +1,8 @@
 # ISOTROPE Design System
 
+**FUENTE OFICIAL OBLIGATORIA:** [manual de marca 2026](brand/README.md) + [texto completo extraído de 37 páginas](brand/ISOTROPE_BRAND_GUIDELINES_2026_SOURCE_TEXT.md). Los colores/tipografías históricos utilizados en componentes ya BLOQUEADOS no deben confundirse con el manual rector; no cambiar componentes bloqueados sin autorización específica.
+
+
 ## Visual direction
 
 **Minimal Industrial Intelligence**
@@ -14,35 +17,25 @@ Visual hierarchy:
 
 **Engineering → Systems → Precision → Access → Rope**
 
-## Color system
+## Colores oficiales — manual 2026 (págs. 21–23)
 
-Primary palette:
+Paleta principal: `#A477EB`, `#8B07D1`, `#8D45FF`, `#340566`.
 
-- White: `#FFFFFF`
-- Off-white: `#F4F4F3`
-- Light grey: `#C9CACE`
-- Secondary grey: `#74777D`
-- Primary black: `#08090B`
-- Primary purple: `#7F00B2`
-- Purple hover/active: `#9300CF`
-- Deep purple: `#4E006B`
-- Dark surface: `#111216`
-- Elevated surface: `#191A1F`
-- Dark border: `#292B31`
-- Technical dark grey: `#474A51`
-- Muted text: `#8E9198`
-- Light border: `#D9DADD`
-- Alternate light background: `#F8F8F8`
-- Auxiliary grey: `#B7B9BE`
+- `#340566` **solo para fondos**.
+- `#8B07D1`, `#8D45FF`, `#A477EB` para acentos, iconos y mensajes destacados, con moderación.
+- Secundarios: negro `#000000`, grises `#5B5B5B` y `#A5A5A5`; blanco `#FFFFFF` en fondos y contraste.
+- “ISOTROPE” dentro del texto: negrita, preferiblemente `#8B07D1` sobre superficie adecuada, o negro.
 
-Purple is a precision accent. Use it primarily for CTAs, active states and small controlled details. Avoid large purple background fields.
+No reutilizar como paleta oficial los valores aproximados que figuraban en versiones anteriores de este documento.
 
-Avoid orange, yellow and red as primary brand colors.
+## Tipografía oficial — manual 2026 (pág. 24)
 
-## Typography
+- **Archivo Black**: títulos principales.
+- **Poppins Bold**: subtítulos.
+- **Poppins**: texto de lectura e interfaz.
+- **Amsi Pro**: slogans y declaraciones expresivas.
 
-- Display / headings: **Instrument Sans**
-- Body / UI: **Manrope**
+**Excepción ya aprobada — Hero:** conserva su tratamiento de Instrument Sans / Manrope y su código LOCKED mientras no se autorice expresamente revisarlo. En las nuevas secciones debe prevalecer el manual oficial.
 
 ## Hero visual rules — LOCKED
 

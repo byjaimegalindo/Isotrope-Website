@@ -68,7 +68,7 @@ Home page controller:
 
 `velo/pages/home.js`
 
-The file is intentionally empty except for documentation comments. Do **not** reintroduce `wixWindowFrontend.getBoundingRect()`, `setInterval()`, scroll prediction or similar Hero synchronization code while the native Custom Embed is active.
+Home Velo now also contains the client-approved **Services-only** controller (see `docs/services/README.md`). **Do not reintroduce scrolling/polling into the Hero controller** while the native Hero bridge is active. The Services controller reads `getBoundingRect()` at 65 ms **only while its native repeater is in view**; this is an isolated exception scoped to Services.
 
 ## Approved blackout timing
 
@@ -202,3 +202,14 @@ Current icon direction:
 10. Footer
 
 Finish and lock Home first, then derive the reusable design/implementation system for About, Services and Projects.
+
+
+---
+
+## Cierre nuevo — SERVICES validado por el cliente · 2026-11-23
+
+La arquitectura Wix nativa que reemplaza a Services V11 queda documentada en [docs/services/README.md](services/README.md). Fuentes canónicas: `velo/pages/home.js`, `velo/popups/services.js` y `frontend/services/services-popup.html`. Los límites repetidos `#line75` / `#line74` y la línea de activación del 52 % están bloqueados; la fotografía `#imageX46` y el número `#text550` cambian juntos. El botón `#vectorImage31` abre el popup dinámico `Services`.
+
+**El usuario confirmó: “Todo funciona perfecto”.** No reintroducir experimentos con V11 iframe, addons, bridge de scroll de Services ni técnicas anteriores. La actualización de Git no altera ni activa/desactiva Custom Embeds del sitio Wix.
+
+**Manual rector:** [docs/brand/README.md](brand/README.md) (paleta, fuentes, logotipo, fotografía, servicios e iconos oficiales). Fuente original 2026 de 37 páginas; texto completo reproducido en Git. Para decisiones visuales verificar también el PDF original; la copia PDF optimizada se entrega por separado para su incorporación binaria.

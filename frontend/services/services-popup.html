@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>ISOTROPE | Service Details</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --background: #ffffff;
+    --surface: #ffffff;
+    --black: #000000;
+    --white: #ffffff;
+    --purple: #8b07d1;
+    --hover: #8d45ff;
+    --deep: #340566;
+    --grey: #5b5b5b;
+    --muted: #5b5b5b;
+    --border: rgba(0,0,0,.16);
+    --gutter: clamp(24px, 5.5vw, 62px);
+    --control: 46px;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; margin: 0; background: #ffffff; }
+  html { overflow: hidden; }
+  body { color: var(--black); background: var(--background); font-family: Poppins, Arial, sans-serif; }
+  button { font: inherit; cursor: pointer; }
+  button:focus-visible { outline: 2px solid var(--purple); outline-offset: 3px; }
+  .app { display: flex; flex-direction: column; height: 100%; min-height: 0; overflow: hidden; background: #fff; }
+  .topbar { flex: none; min-height: 84px; display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 20px var(--gutter) 16px; border-bottom: 1px solid var(--border); background: #fff; }
+  .brand { color: var(--black); font-weight: 700; font-size: 14px; letter-spacing: .09em; text-transform: uppercase; }
+  .topRight { display: flex; align-items: center; gap: 19px; }
+  .pageCount { color: var(--black); font-size: 13px; font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .pageCount .separator { padding: 0 5px; color: var(--grey); font-weight: 400; }
+  .circle { width: var(--control); height: var(--control); flex: 0 0 var(--control); display: inline-grid; place-items: center; color: var(--black); border: 1px solid var(--black); border-radius: 50%; background: transparent; transition: background-color .2s, border-color .2s, color .2s; }
+  .circle:hover { background: var(--purple); border-color: var(--purple); color: var(--white); }
+  .circle .glyph { font-family: Arial, sans-serif; font-size: 22px; font-weight: 400; line-height: 1; }
+  .circle.close { border-color: var(--border); }
+  .circle.close:hover { border-color: var(--purple); }
+  .scroll { min-height: 0; flex: 1 1 auto; overflow-y: auto; overflow-x: hidden; overscroll-behavior-y: contain; scrollbar-width: thin; scrollbar-color: #a5a5a5 #ffffff; background: #fff; }
+  .scroll::-webkit-scrollbar { width: 6px; }
+  .scroll::-webkit-scrollbar-thumb { background: #a5a5a5; border-radius: 6px; }
+  .body { padding: 36px var(--gutter) 34px; max-width: 930px; margin: 0 auto; width: 100%; }
+  .number { color: #000000; font: 400 clamp(62px, 10vw, 105px)/.94 'Archivo Black', Poppins, sans-serif; letter-spacing: -.085em; margin: 0 0 24px; }
+  .title { color: var(--black); font: 400 clamp(27px, 4.4vw, 46px)/1.18 'Archivo Black', Poppins, sans-serif; letter-spacing: -.035em; text-transform: uppercase; margin: 0; overflow-wrap: break-word; }
+  .title .accent { color: var(--purple); }
+  .strap { color: var(--black); font-size: clamp(16px, 2.2vw, 20px); line-height: 1.45; font-weight: 600; margin: 24px 0 15px; }
+  .description { color: var(--black); font-size: 14px; font-weight: 400; line-height: 1.8; max-width: 70ch; margin: 0; white-space: pre-wrap; }
+  .line { height: 1px; width: 100%; background: var(--border); margin: 36px 0 30px; }
+  .sectionLabel { text-transform: uppercase; font-size: 11px; color: var(--black); font-weight: 700; letter-spacing: .16em; margin: 0 0 22px; }
+  .group + .group { margin-top: 28px; }
+  .group h3 { color: var(--black); font-size: 16px; font-weight: 700; line-height: 1.5; margin: 0 0 11px; }
+  .capabilities { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 8px 26px; list-style: none; padding: 0; margin: 0; }
+  .capabilities li { font-size: 13px; line-height: 1.6; color: var(--black); position: relative; padding-left: 15px; }
+  .capabilities li::before { content: ''; width: 4px; height: 4px; background: var(--purple); border-radius: 50%; position: absolute; top: 9px; left: 0; }
+  .deliver { border: 0; background: var(--deep); padding: 27px 29px 28px; margin-top: 35px; border-radius: 9px; }
+  .deliver h2 { color: #ffffff; font-size: 11px; text-transform: uppercase; letter-spacing: .16em; margin: 0 0 12px; }
+  .deliver p { font-size: 14px; line-height: 1.75; margin: 0; color: #ffffff; }
+  .footer { flex: none; min-height: 91px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 17px var(--gutter); background: #fff; }
+  .footerTitle { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .footerTitle strong { text-transform: uppercase; letter-spacing: .10em; font-size: 10px; color: var(--black); }
+  .footerTitle span { font-weight: 600; font-size: 12px; color: var(--black); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .arrows { display: flex; gap: 12px; flex: none; }
+  .loading { padding: 35px 0; color: var(--black); font-size: 14px; }
+  [hidden] { display: none !important; }
+  @media (max-width: 600px) {
+    :root { --gutter: 25px; --control: 42px; }
+    .topbar { min-height: 78px; }
+    .brand { font-size: 12px; }
+    .topRight { gap: 10px; }
+    .body { padding-top: 29px; }
+    .capabilities { grid-template-columns: 1fr; gap: 7px; }
+    .number { margin-bottom: 20px; }
+    .footer { min-height: 83px; }
+    .footerTitle { max-width: 48%; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="app" aria-label="ISOTROPE service details">
+  <header class="topbar">
+    <div>
+      <div class="brand">SERVICE DETAILS</div>
+    </div>
+    <div class="topRight">
+      <div class="pageCount" aria-live="polite"><span id="topCurrent">01</span><span class="separator">/</span><span>04</span></div>
+      <button type="button" class="circle close" id="close" aria-label="Close service details"><span class="glyph" aria-hidden="true">×</span></button>
+    </div>
+  </header>
+
+  <div id="scrollArea" class="scroll" tabindex="0">
+    <main class="body" id="content">
+      <div id="loading" class="loading" role="status">Loading service information…</div>
+      <article id="article" hidden>
+        <p class="number" id="number">01</p>
+        <h1 class="title" id="title"></h1>
+        <p class="strap" id="strap"></p>
+        <p class="description" id="description"></p>
+        <div class="line"></div>
+        <section id="capabilitiesSection" aria-labelledby="capabilitiesTitle">
+          <h2 class="sectionLabel" id="capabilitiesTitle">Scope & capabilities</h2>
+          <div id="groups"></div>
+        </section>
+        <section class="deliver" id="deliverSection" aria-labelledby="deliverTitle">
+          <h2 id="deliverTitle">What you receive</h2>
+          <p id="deliver"></p>
+        </section>
+      </article>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="footerTitle" aria-live="polite">
+      <strong>Explore services</strong>
+      <span id="footerService">01 / 04</span>
+    </div>
+    <nav class="arrows" aria-label="Navigate between services">
+      <button class="circle" type="button" id="prev" aria-label="Previous service"><span class="glyph" aria-hidden="true">←</span></button>
+      <button class="circle" type="button" id="next" aria-label="Next service"><span class="glyph" aria-hidden="true">→</span></button>
+    </nav>
+  </footer>
+</div>
+<script>
+(() => {
+  'use strict';
+  const PROTOCOL = 'ISOTROPE_SERVICES_POPUP_V1';
+  const el = id => document.getElementById(id);
+  const state = { services: [], index: 0, ready: false };
+  const scrollArea = el('scrollArea');
+  let readyRetry = null;
+
+  function sendToWix(type, more = {}) {
+    window.parent.postMessage({ type: PROTOCOL + '_' + type, ...more }, '*');
+  }
+  function make(tag, cls, value) {
+    const node = document.createElement(tag);
+    if (cls) node.className = cls;
+    if (value !== undefined) node.textContent = String(value);
+    return node;
+  }
+  function highlightTitle(title, accent) {
+    const h1 = el('title');
+    h1.replaceChildren();
+    const str = String(title || '');
+    const match = String(accent || '').trim();
+    const start = match ? str.toLowerCase().lastIndexOf(match.toLowerCase()) : -1;
+    if (start < 0) {
+      h1.textContent = str;
+      return;
+    }
+    h1.append(document.createTextNode(str.slice(0, start)));
+    h1.append(make('span', 'accent', str.slice(start, start + match.length)));
+    h1.append(document.createTextNode(str.slice(start + match.length)));
+  }
+  function render() {
+    const items = state.services;
+    if (!items.length) return;
+    state.index = (state.index % items.length + items.length) % items.length;
+    const s = items[state.index];
+    const number = String(s.number || String(state.index + 1).padStart(2, '0'));
+    el('number').textContent = number;
+    el('topCurrent').textContent = number;
+    el('footerService').textContent = `${number} / ${String(items.length).padStart(2, '0')}`;
+    highlightTitle(s.title, s.accent);
+    el('strap').textContent = s.strap || '';
+    el('description').textContent = s.description || '';
+    el('deliver').textContent = s.deliver || '';
+    el('deliverSection').hidden = !s.deliver;
+
+    const groupsRoot = el('groups');
+    groupsRoot.replaceChildren();
+    const groups = (s.capabilities && Array.isArray(s.capabilities.groups))
+      ? s.capabilities.groups : [];
+    for (const group of groups) {
+      if (!Array.isArray(group) || group.length < 2) continue;
+      const itemsInGroup = Array.isArray(group[1]) ? group[1] : [];
+      const section = make('div', 'group');
+      section.append(make('h3', '', group[0] || 'Capabilities'));
+      const ul = make('ul', 'capabilities');
+      for (const value of itemsInGroup) {
+        ul.append(make('li', '', value));
+      }
+      section.append(ul);
+      groupsRoot.append(section);
+    }
+    el('capabilitiesSection').hidden = !groups.length;
+    el('loading').hidden = true;
+    el('article').hidden = false;
+    scrollArea.scrollTop = 0;
+    document.title = `${number} — ${s.title || 'Service'} | ISOTROPE`;
+  }
+  function navigate(delta) {
+    if (!state.ready || !state.services.length) return;
+    state.index = (state.index + delta + state.services.length) % state.services.length;
+    render();
+  }
+
+  el('prev').addEventListener('click', () => navigate(-1));
+  el('next').addEventListener('click', () => navigate(1));
+  el('close').addEventListener('click', () => sendToWix('CLOSE'));
+  window.addEventListener('keydown', event => {
+    if (event.key === 'ArrowLeft') navigate(-1);
+    if (event.key === 'ArrowRight') navigate(1);
+    if (event.key === 'Escape') sendToWix('CLOSE');
+  });
+  window.addEventListener('message', event => {
+    const message = event.data || {};
+    if (message.type === PROTOCOL + '_INIT') {
+      const input = Array.isArray(message.services) ? message.services : [];
+      if (!input.length) return;
+      state.services = input.slice().sort((a, b) => Number(a.sortOrder) - Number(b.sortOrder));
+      const requested = Number(message.initialIndex);
+      state.index = Number.isFinite(requested) ? requested : 0;
+      state.ready = true;
+      if (readyRetry) clearInterval(readyRetry);
+      render();
+    } else if (message.type === PROTOCOL + '_ERROR') {
+      el('loading').textContent = String(message.message || 'Unable to load service information.');
+    }
+  });
+
+  // Wix's HTML component and the popup can be ready in either order.
+  // Retry only the initialization handshake; stop after receipt.
+  sendToWix('READY');
+  readyRetry = setInterval(() => {
+    if (!state.ready) sendToWix('READY');
+    else clearInterval(readyRetry);
+  }, 750);
+})();
+</script>
+</body>
+</html>
