@@ -1,0 +1,78 @@
+<script>
+(function(){
+ 'use strict';
+ // Isolated How We Work V07 bridge. No changes to Hero, header or other widgets.
+ const READY='ISOTROPE_HOW_WORK_V07_READY';
+ const STATE='ISOTROPE_HOW_WORK_V07_SCROLL';
+ const KEY='__ISOTROPE_HOW_WORK_V07_BRIDGE__';
+ if(window[KEY])return;
+ window[KEY]=true;
+ const clients=new Map();
+ let raf=0;
+ const clamp=n=>Math.max(0,Math.min(1,n));
+ function findFrame(doc,source,depth=0){
+  if(depth>4)return null;
+  for(const f of doc.querySelectorAll('iframe')){
+   if(f.contentWindow===source)return [f];
+   try{
+    const child=f.contentDocument;
+    if(child){const chain=findFrame(child,source,depth+1);if(chain)return [f,...chain];}
+   }catch(e){}
+  }
+  return null;
+ }
+ function measure(chain,metrics){
+  // Map the timeline's own CSS coordinates into the top-page viewport.
+  let y=metrics.top,h=metrics.height,viewport=metrics.viewportHeight;
+  for(let i=chain.length-1;i>=0;i--){
+   const f=chain[i];if(!f.isConnected)return null;
+   const r=f.getBoundingClientRect();
+   const ch=f.clientHeight||viewport;
+   const sy=ch>0?r.height/ch:1;
+   if(!Number.isFinite(sy)||sy<=0)return null;
+   // The inner iframe viewport height normally equals clientHeight; normalize
+   // only the innermost frame if its reported viewport uses a different scale.
+   const normalize=i===chain.length-1&&viewport>0?ch/viewport:1;
+   y=r.top+y*normalize*sy;
+   h=h*normalize*sy;
+  }
+  return {top:y,height:h};
+ }
+ function progressFor(top,height,vh){
+  if(!(height>0&&vh>0)||top>=vh||top+height<=0)return null;
+  const center=top+height/2;
+  // Actual travel in screen pixels, centered vertically, max 160 px.
+  const span=Math.min(160,vh*.20);
+  return clamp((vh*.5+span/2-center)/span);
+ }
+ function publish(){
+  raf=0;
+  const vh=window.innerHeight||document.documentElement.clientHeight;
+  clients.forEach((c,source)=>{
+   let chain=c.chain;
+   if(!chain||chain.some(f=>!f.isConnected)){chain=findFrame(document,source);c.chain=chain;}
+   if(!chain)return;
+   const r=measure(chain,c.metrics);
+   const p=r?progressFor(r.top,r.height,vh):null;
+   const value=p===null?null:Math.round(p*10000)/10000;
+   if(value===c.last)return;
+   try{source.postMessage({type:STATE,progress:value},c.origin==='null'?'*':c.origin);c.last=value;}
+   catch(e){clients.delete(source);}
+  });
+ }
+ function schedule(){if(!raf)raf=requestAnimationFrame(publish);}
+ window.addEventListener('message',e=>{
+  const d=e.data;if(!d||d.type!==READY||!e.source)return;
+  if(![d.top,d.height,d.viewportHeight].every(v=>typeof v==='number'&&Number.isFinite(v))||d.height<=0||d.viewportHeight<=0)return;
+  const chain=findFrame(document,e.source);if(!chain)return;
+  clients.set(e.source,{chain,origin:e.origin,metrics:{top:d.top,height:d.height,viewportHeight:d.viewportHeight},last:undefined});
+  schedule();
+ });
+ document.addEventListener('scroll',schedule,{capture:true,passive:true});
+ window.addEventListener('scroll',schedule,{passive:true});
+ window.addEventListener('resize',schedule,{passive:true});
+ if(window.visualViewport)window.visualViewport.addEventListener('resize',schedule,{passive:true});
+ if('ResizeObserver' in window)new ResizeObserver(schedule).observe(document.documentElement);
+ window.addEventListener('load',schedule,{once:true});
+})();
+</script>
