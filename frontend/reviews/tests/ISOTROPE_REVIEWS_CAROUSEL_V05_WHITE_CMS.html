@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>ISOTROPE — Client reviews</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--black:#000;--white:#fff;--grey:#a5a5a5;--purple:#8b07d1;--hover:#8d45ff;--lavender:#a477eb;--line:rgba(255,255,255,.19);--gap:max(12px,1vw);--radius:15px;--pad:clamp(22px,2vw,40px);--control:46px}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;width:100%;background:var(--black);color:var(--white);font-family:Poppins,Arial,sans-serif}
+body{min-width:0}
+button{font:inherit;cursor:pointer}
+button:focus-visible,.rail:focus-visible{outline:2px solid var(--lavender);outline-offset:-2px}
+.reviews{width:100%;margin:0;padding:0}
+.rail{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 2 * var(--gap))/3);gap:var(--gap);overflow-x:auto;overflow-y:hidden;scrollbar-width:none;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;align-items:stretch;touch-action:pan-x pan-y}
+.rail::-webkit-scrollbar{display:none}
+.review{min-width:0;min-height:clamp(300px,24vw,420px);display:flex;flex-direction:column;padding:var(--pad);border:1px solid transparent;border-radius:var(--radius);background:var(--white);color:var(--black);scroll-snap-align:start;transition:border-color .25s ease}
+.identity{display:flex;align-items:center;gap:16px;min-width:0;margin-bottom:26px;min-height:max(clamp(62.4px,5.52vw,91.2px),calc(clamp(16px,1.333333vw,22px)*2.8 + 24.2px))}
+.identity>div:last-child{flex:1;min-width:0}
+.avatar{width:clamp(62.4px,5.52vw,91.2px);height:clamp(62.4px,5.52vw,91.2px);flex:none;display:grid;place-items:center;border-radius:50%;background:#1c1c1c;overflow:hidden;color:var(--white);font-size:20px;font-weight:600}
+.avatar img{display:block;width:100%;height:100%;object-fit:cover;filter:grayscale(1)}
+.company{font-size:clamp(16px,1.333333vw,22px);font-weight:600;line-height:1.4;margin:0;min-height:2.8em;overflow-wrap:anywhere}
+.person{font-size:12px;color:#5b5b5b;margin:4px 0 0;line-height:1.5}
+.stars{display:block;margin:5px 0 0;color:var(--purple);font:400 16px/1.2 Arial,sans-serif;letter-spacing:2px}
+.comment{margin:0 0 26px;flex:1;white-space:pre-wrap;overflow-wrap:break-word;font-size:clamp(14px,.933333vw,18px);line-height:1.75;color:var(--black)}
+.card-bottom{display:flex;align-items:center;justify-content:flex-start;padding-top:20px;border-top:1px solid rgba(0,0,0,.16);min-height:60px}
+.project{border:1px solid var(--purple);background:var(--purple);color:var(--white);border-radius:6px;padding:12px 23px;font-size:11px;line-height:1.3;font-weight:600;letter-spacing:.02em;text-transform:uppercase;transition:background-color .2s,border-color .2s}
+.project:hover{background:var(--hover);border-color:var(--hover)}
+.navigation{margin-top:20px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.status{display:flex;align-items:center;flex:1;gap:16px;min-width:0}
+.count{font-size:12px;font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}
+.arrows{display:flex;gap:12px;flex:none}
+.circle{width:var(--control);height:var(--control);flex:0 0 var(--control);display:grid;place-items:center;border-radius:50%;border:1px solid var(--white);background:transparent;color:var(--white);font:400 22px/1 Arial,sans-serif;transition:background-color .2s,border-color .2s,color .2s}
+.circle:hover:not(:disabled){background:var(--purple);border-color:var(--purple)}
+.circle:disabled{border-color:var(--line);color:var(--grey);cursor:default}
+.message{min-height:120px;display:grid;place-items:center;text-align:center;font-size:14px;color:var(--grey);padding:16px}
+[hidden]{display:none!important}
+/* Share vertical content tracks across the horizontal rail, including longer company names. */
+@supports(grid-template-rows:subgrid){.rail{grid-template-rows:auto 1fr auto;row-gap:0}.review{display:grid;grid-row:span 3;grid-template-rows:subgrid;row-gap:0}.identity{align-self:stretch}.comment{align-self:start}.card-bottom{align-self:end}}
+@media(hover:hover) and (pointer:fine){.review:hover{border-color:var(--purple)}}
+@media(max-width:1000px){.rail{grid-auto-columns:calc((100% - var(--gap))/2)}}
+@media(max-width:650px){:root{--control:42px;--gap:12px}.rail{grid-auto-columns:88%}.review{min-height:310px;padding:24px}.identity{margin-bottom:20px;gap:12px}.company{font-size:16px}.comment{font-size:14px}.card-bottom{padding-top:16px}.navigation{margin-top:16px;gap:12px}.status{gap:12px}.arrows{gap:10px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<section class="reviews" aria-label="Client reviews">
+ <div class="message" id="message" role="status">Loading reviews…</div>
+ <div class="rail" id="rail" tabindex="0" aria-label="Client testimonials" hidden></div>
+ <nav class="navigation" id="navigation" aria-label="Explore reviews" hidden>
+  <div class="status"><span class="count" id="count" aria-live="polite"></span></div>
+  <div class="arrows"><button class="circle" id="prev" type="button" aria-label="Previous review">←</button><button class="circle" id="next" type="button" aria-label="Next review">→</button></div>
+ </nav>
+</section>
+<script>
+(()=>{
+'use strict';
+const PROTOCOL='ISOTROPE_REVIEWS_V2';
+const el=id=>document.getElementById(id);
+const rail=el('rail'),nav=el('navigation'),message=el('message');
+let items=[],ready=false,retry=null,localPreview=false;
+const motion=()=>matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth';
+const number=n=>String(n).padStart(2,'0');
+const make=(tag,cls,value)=>{const node=document.createElement(tag);if(cls)node.className=cls;if(value!==undefined)node.textContent=String(value);return node};
+function send(action,extra={}){if(window.parent!==window)window.parent.postMessage({type:PROTOCOL+'_'+action,...extra},'*')}
+function imageUrl(input){const raw=typeof input==='string'?input:input?.src||input?.uri||input?.url||'';if(raw.startsWith('wix:image://v1/')){const id=raw.slice(15).split('/')[0];return /^[a-zA-Z0-9_.~%-]+$/.test(id)?'https://static.wixstatic.com/media/'+id:''}try{const u=new URL(raw);return u.protocol==='https:'?u.href:''}catch{return ''}}
+function projectId(value){return typeof value==='string'?value:String(value?._id||value?.id||'')}
+function render(input){
+ items=input.filter(x=>x&&typeof x.comment==='string'&&x.comment.trim()).slice().sort((a,b)=>Number(a.sortOrder||0)-Number(b.sortOrder||0));
+ rail.replaceChildren();rail.scrollLeft=0;
+ if(!items.length){message.textContent='No reviews available.';message.hidden=false;rail.hidden=nav.hidden=true;return}
+ for(const r of items){
+  const company=String(r.clientCompany||''),name=String(r.clientName||'');
+  const card=make('article','review'),identity=make('div','identity'),avatar=make('div','avatar');
+  const initials=(company||name||'I').trim().split(/\s+/).slice(0,2).map(s=>s.charAt(0)).join('').toUpperCase();
+  avatar.textContent=initials;
+  const src=imageUrl(r.photo);
+  if(src){const img=make('img');img.alt='';img.decoding='async';img.src=src;img.addEventListener('error',()=>img.remove());avatar.append(img);avatar.firstChild.nodeType===3&&avatar.firstChild.remove();img.addEventListener('error',()=>{avatar.textContent=initials},{once:true})}
+  const info=make('div');info.append(make('h2','company',company||name||'Client'));
+  if(name&&company)info.append(make('p','person',name));
+  if(r.rating!==null&&r.rating!==undefined&&r.rating!==''&&Number.isFinite(Number(r.rating))){const rating=Math.max(0,Math.min(5,Math.round(Number(r.rating))));const stars=make('span','stars','★'.repeat(rating)+'☆'.repeat(5-rating));stars.setAttribute('aria-label',rating+' out of 5 stars');info.append(stars)}
+  identity.append(avatar,info);
+  const copy=make('p','comment',r.comment);
+  const bottom=make('div','card-bottom'),id=projectId(r.project||r.projectId);
+  if(id){const button=make('button','project','VIEW PROJECT');button.type='button';button.addEventListener('click',()=>{if(localPreview){message.hidden=false;message.textContent='Project popup requires the Wix connection.';return}send('OPEN_PROJECT',{projectId:id})});bottom.append(button)}
+  else bottom.hidden=true;
+  card.append(identity,copy,bottom);rail.append(card);
+ }
+ rail.hidden=false;nav.hidden=false;message.hidden=true;requestAnimationFrame(sync);
+}
+function maxScroll(){return Math.max(0,rail.scrollWidth-rail.clientWidth)}
+function offsets(){const first=rail.firstElementChild;if(!first)return [0];const max=maxScroll();return [...new Set([...rail.children].map(c=>Math.round(Math.min(max,c.offsetLeft-first.offsetLeft))).concat(Math.round(max)))].sort((a,b)=>a-b)}
+function sync(){const max=maxScroll(),left=Math.max(0,rail.scrollLeft),stops=offsets();const current=stops.reduce((best,x,i)=>Math.abs(x-left)<Math.abs(stops[best]-left)?i:best,0);const visible=[...rail.children].filter(c=>{const a=c.getBoundingClientRect(),b=rail.getBoundingClientRect();return a.left<b.right-5&&a.right>b.left+5});const first=visible.length?[...rail.children].indexOf(visible[0])+1:1;const last=visible.length?first+visible.length-1:first;el('count').textContent=number(first)+(last>first?'–'+number(last):'')+' / '+number(items.length);el('prev').disabled=current===0&&left<2;el('next').disabled=left>=max-2;nav.hidden=!items.length}
+function navigate(dir){const stops=offsets(),left=rail.scrollLeft;const target=dir>0?stops.find(v=>v>left+2):stops.slice().reverse().find(v=>v<left-2);rail.scrollTo({left:target??(dir>0?maxScroll():0),behavior:motion()})}
+el('prev').addEventListener('click',()=>navigate(-1));el('next').addEventListener('click',()=>navigate(1));
+rail.addEventListener('scroll',sync,{passive:true});
+rail.addEventListener('keydown',e=>{if(e.target!==rail)return;if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();navigate(e.key==='ArrowRight'?1:-1)}else if(e.key==='Home'||e.key==='End'){e.preventDefault();rail.scrollTo({left:e.key==='Home'?0:maxScroll(),behavior:motion()})}});
+window.addEventListener('resize',sync,{passive:true});
+if('ResizeObserver'in window)new ResizeObserver(sync).observe(rail);
+if(document.fonts)document.fonts.ready.then(sync);
+window.addEventListener('message',event=>{
+ if(event.source!==window.parent)return;
+ const d=event.data||{};
+ if(d.type===PROTOCOL+'_INIT'){ready=true;clearInterval(retry);render(Array.isArray(d.reviews)?d.reviews:[])}
+ else if(d.type===PROTOCOL+'_ERROR'){clearInterval(retry);message.hidden=false;message.textContent=String(d.message||'Unable to load reviews.');}
+});
+if(window.parent!==window){send('READY');let attempts=0;retry=setInterval(()=>{if(ready||++attempts>40){clearInterval(retry);return}send('READY')},750)}
+else {message.textContent='Connect this HTML to the Wix Reviews collection to view the carousel.'}
+})();
+</script>
+</body>
+</html>
