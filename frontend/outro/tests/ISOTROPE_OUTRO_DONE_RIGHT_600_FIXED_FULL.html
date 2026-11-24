@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8" />
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1"
+/>
+
+<title>ISOTROPE — DONE RIGHT. | Cinematic Outro</title>
+
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Poppins:wght@400;500;600;700&display=swap');
+
+
+:root{
+  --bg:#08090B;
+  --white:#FFFFFF;
+}
+
+
+*{
+  box-sizing:border-box;
+}
+
+
+html,
+body{
+  margin:0;
+
+  width:100%;
+  height:100%;
+
+  background:var(--bg);
+
+  font-family:
+    'Poppins',
+    Arial,
+    sans-serif;
+}
+
+
+body{
+  overflow:hidden;
+
+  touch-action:pan-y;
+}
+
+
+/* =========================================================
+   OUTRO
+   SAME ROOT ARCHITECTURE AS HERO
+   ========================================================= */
+
+.outro{
+  position:relative;
+
+  width:100%;
+
+  height:100%;
+  min-height:0;
+
+  overflow:hidden;
+
+  isolation:isolate;
+
+  background:var(--bg);
+}
+
+
+/* =========================================================
+   VIDEO
+   EXACT HERO VALUES
+   ========================================================= */
+
+.outro__video{
+  position:absolute;
+
+  inset:0;
+
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+
+  z-index:-3;
+
+  transform:scale(1.01);
+
+  filter:
+    contrast(1.06)
+    brightness(.72);
+
+  will-change:
+    transform,
+    filter;
+}
+
+
+/* =========================================================
+   SHADE
+   EXACT HERO VALUES
+   ========================================================= */
+
+.outro__shade{
+  position:absolute;
+
+  inset:0;
+
+  z-index:-2;
+
+  pointer-events:none;
+
+  background:
+
+    linear-gradient(
+      90deg,
+
+      rgba(4,5,7,.72) 0%,
+
+      rgba(4,5,7,.38) 36%,
+
+      rgba(4,5,7,.14) 68%,
+
+      rgba(4,5,7,.06) 100%
+    ),
+
+    linear-gradient(
+      180deg,
+
+      rgba(4,5,7,.08) 0%,
+
+      rgba(4,5,7,.02) 53%,
+
+      rgba(4,5,7,.58) 100%
+    );
+}
+
+
+/* =========================================================
+   POSITIONING ONLY
+
+   NO:
+   opacity
+   transform
+   filter
+   z-index
+   isolation
+
+   Therefore the anchor does not alter X-Ray compositing.
+   ========================================================= */
+
+.outro__word-anchor{
+  position:absolute;
+
+  left:clamp(18px,3vw,48px);
+  right:clamp(18px,3vw,48px);
+
+  bottom:clamp(24px,4vh,46px);
+
+  width:auto;
+
+  display:flex;
+
+  justify-content:center;
+  align-items:flex-end;
+
+  pointer-events:none;
+}
+
+
+/* =========================================================
+   DONE RIGHT.
+
+   BRAND TYPOGRAPHY + XRAY BASE.
+
+   Fade is performed through alpha channels only.
+   ========================================================= */
+
+.outro__word{
+
+  --base-a:1;
+
+  --stroke-a:.42;
+
+  --shadow-1-a:.11;
+  --shadow-2-a:.06;
+
+  --sweep-1-a:.01;
+  --sweep-2-a:.05;
+  --sweep-3-a:.46;
+  --sweep-4-a:.07;
+  --sweep-5-a:.01;
+
+
+  position:relative;
+
+  display:block;
+
+  width:max-content;
+  max-width:100%;
+
+  margin:0;
+  padding:0;
+
+  font-family:
+    'Archivo Black',
+    Arial,
+    sans-serif;
+
+  font-size:
+    clamp(
+      28px,
+      7vw,
+      132px
+    );
+
+  font-weight:400;
+
+  line-height:.96;
+
+  letter-spacing:-.045em;
+
+  text-transform:uppercase;
+
+  white-space:nowrap;
+  text-align:center;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      var(--base-a)
+    );
+
+  mix-blend-mode:difference;
+
+  filter:contrast(1.16);
+
+  pointer-events:none;
+}
+
+
+/* =========================================================
+   HERO XRAY EDGE / GLOW
+
+   FINAL STATE:
+   stroke = .42
+   shadows = .11 / .06
+   opacity = .68
+
+   EXACT HERO.
+   ========================================================= */
+
+.outro__word::before{
+  content:attr(data-text);
+
+  position:absolute;
+
+  inset:0;
+
+  pointer-events:none;
+
+  color:transparent;
+
+  -webkit-text-stroke:
+    .75px
+    rgba(
+      255,
+      255,
+      255,
+      var(--stroke-a)
+    );
+
+  text-shadow:
+
+    0 0 5px
+    rgba(
+      255,
+      255,
+      255,
+      var(--shadow-1-a)
+    ),
+
+    0 0 13px
+    rgba(
+      255,
+      255,
+      255,
+      var(--shadow-2-a)
+    );
+
+  mix-blend-mode:screen;
+
+  opacity:.68;
+}
+
+
+/* =========================================================
+   HERO XRAY SWEEP
+
+   FINAL GRADIENT VALUES:
+   .01 / .05 / .46 / .07 / .01
+
+   EXACT HERO.
+
+   Animation opacity remains completely untouched.
+   ========================================================= */
+
+.outro__word::after{
+  content:attr(data-text);
+
+  position:absolute;
+
+  inset:0;
+
+  pointer-events:none;
+
+  color:transparent;
+
+  background:
+
+    linear-gradient(
+      108deg,
+
+      rgba(
+        255,
+        255,
+        255,
+        var(--sweep-1-a)
+      ) 0%,
+
+      rgba(
+        255,
+        255,
+        255,
+        var(--sweep-2-a)
+      ) 31%,
+
+      rgba(
+        255,
+        255,
+        255,
+        var(--sweep-3-a)
+      ) 48%,
+
+      rgba(
+        255,
+        255,
+        255,
+        var(--sweep-4-a)
+      ) 58%,
+
+      rgba(
+        255,
+        255,
+        255,
+        var(--sweep-5-a)
+      ) 100%
+    );
+
+  background-size:230% 100%;
+
+  background-position:145% 0;
+
+  -webkit-background-clip:text;
+
+  background-clip:text;
+
+  -webkit-text-fill-color:transparent;
+
+  mix-blend-mode:screen;
+
+  animation:
+
+    xraySweep
+
+    8.2s
+
+    cubic-bezier(.45,0,.18,1)
+
+    infinite;
+}
+
+
+/* =========================================================
+   EXACT HERO XRAY ANIMATION
+   ========================================================= */
+
+@keyframes xraySweep{
+
+  0%,
+  62%{
+
+    background-position:
+      145% 0;
+
+    opacity:.10;
+
+  }
+
+
+  69%{
+
+    opacity:.55;
+
+  }
+
+
+  84%{
+
+    opacity:.30;
+
+  }
+
+
+  96%,
+  100%{
+
+    background-position:
+      -120% 0;
+
+    opacity:.08;
+
+  }
+
+}
+
+
+/* =========================================================
+   TABLET
+   EXACT HERO TYPOGRAPHY
+   ========================================================= */
+
+@media (max-width:1000px){
+
+  .outro__word-anchor{
+    bottom:30px;
+  }
+
+
+  .outro__word{
+
+    font-size:
+      clamp(
+        28px,
+        7vw,
+        74px
+      );
+
+    line-height:.92;
+
+    letter-spacing:-.030em;
+
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   EXACT HERO TYPOGRAPHY
+   ========================================================= */
+
+@media (max-width:750px){
+
+  .outro__word-anchor{
+    bottom:24px;
+  }
+
+
+  .outro__word{
+
+    font-size:
+      clamp(
+        23px,
+        7vw,
+        54px
+      );
+
+    line-height:.94;
+
+    letter-spacing:-.028em;
+
+  }
+
+}
+
+
+/* =========================================================
+   SAME HERO ACCESSIBILITY BEHAVIOR
+   ========================================================= */
+
+@media (prefers-reduced-motion:reduce){
+
+  .outro__word::after{
+    animation:none;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<section class="outro">
+
+
+  <!-- ======================================================
+       APPROVED OUTRO VIDEO
+       ====================================================== -->
+
+  <video
+
+    id="outroVideo"
+
+    class="outro__video"
+
+    autoplay
+
+    muted
+
+    loop
+
+    playsinline
+
+    preload="metadata"
+
+  >
+
+    <source
+
+      src="https://video.wixstatic.com/video/047d6b_797da783527f4afd93f9003d4715e043/1080p/mp4/file.mp4"
+
+      type="video/mp4"
+
+    >
+
+  </video>
+
+
+
+  <!-- ======================================================
+       EXACT HERO SHADE
+       ====================================================== -->
+
+  <div
+    class="outro__shade"
+    aria-hidden="true"
+  ></div>
+
+
+
+  <!-- ======================================================
+       POSITIONING ONLY
+       ====================================================== -->
+
+  <div class="outro__word-anchor">
+
+
+    <div
+
+      id="word"
+
+      class="outro__word"
+
+      data-text="DONE RIGHT."
+
+      aria-label="Done right."
+
+    >
+      DONE RIGHT.
+    </div>
+
+
+  </div>
+
+
+</section>
+
+
+
+<script>
+// Video only. No scroll capture, wheel relay, bridge or page messages.
+const video = document.getElementById('outroVideo');
+if (video) {
+  video.muted = true;
+  const ensureVideo = () => { video.play().catch(() => {}); };
+  video.addEventListener('canplay', ensureVideo);
+  video.addEventListener('loadeddata', ensureVideo);
+  ensureVideo();
+}
+</script>
+
+
+</body>
+
+</html>
