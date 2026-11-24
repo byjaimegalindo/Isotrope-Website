@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>ISOTROPE | Project Details</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --background: #ffffff;
+    --surface: #ffffff;
+    --black: #000000;
+    --white: #ffffff;
+    --purple: #8b07d1;
+    --hover: #8d45ff;
+    --deep: #340566;
+    --grey: #5b5b5b;
+    --muted: #5b5b5b;
+    --border: rgba(0,0,0,.16);
+    --gutter: clamp(24px, 5.5vw, 62px);
+    --control: 46px;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; margin: 0; background: #ffffff; }
+  html { overflow: hidden; }
+  body { color: var(--black); background: var(--background); font-family: Poppins, Arial, sans-serif; }
+  button { font: inherit; cursor: pointer; }
+  button:focus-visible { outline: 2px solid var(--purple); outline-offset: 3px; }
+  .app { display: flex; flex-direction: column; height: 100%; min-height: 0; overflow: hidden; background: #fff; }
+  .topbar { flex: none; min-height: 84px; display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 20px var(--gutter) 16px; border-bottom: 1px solid var(--border); background: #fff; }
+  .brand { color: var(--black); font-weight: 700; font-size: 14px; letter-spacing: .09em; text-transform: uppercase; }
+  .topRight { display: flex; align-items: center; gap: 19px; }
+  .pageCount { color: var(--black); font-size: 13px; font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .pageCount .separator { padding: 0 5px; color: var(--grey); font-weight: 400; }
+  .circle { width: var(--control); height: var(--control); flex: 0 0 var(--control); display: inline-grid; place-items: center; color: var(--black); border: 1px solid var(--black); border-radius: 50%; background: transparent; transition: background-color .2s, border-color .2s, color .2s; }
+  .circle:hover { background: var(--purple); border-color: var(--purple); color: var(--white); }
+  .circle .glyph { font-family: Arial, sans-serif; font-size: 22px; font-weight: 400; line-height: 1; }
+  .circle.close { border-color: var(--border); }
+  .circle.close:hover { border-color: var(--purple); }
+  .scroll { min-height: 0; flex: 1 1 auto; overflow-y: auto; overflow-x: hidden; overscroll-behavior-y: contain; scrollbar-width: thin; scrollbar-color: #a5a5a5 #ffffff; background: #fff; }
+  .scroll::-webkit-scrollbar { width: 6px; }
+  .scroll::-webkit-scrollbar-thumb { background: #a5a5a5; border-radius: 6px; }
+  .body { padding: 36px var(--gutter) 34px; max-width: 930px; margin: 0 auto; width: 100%; }
+  .number { color: #000000; font: 400 clamp(62px, 10vw, 105px)/.94 'Archivo Black', Poppins, sans-serif; letter-spacing: -.085em; margin: 0 0 24px; }
+  .title { color: var(--black); font: 400 clamp(27px, 4.4vw, 46px)/1.18 'Archivo Black', Poppins, sans-serif; letter-spacing: -.035em; text-transform: uppercase; margin: 0; overflow-wrap: break-word; }
+  .title .accent { color: var(--black); }
+  .strap { color: var(--black); font-size: clamp(16px, 2.2vw, 20px); line-height: 1.45; font-weight: 600; margin: 24px 0 15px; }
+  .description { color: var(--black); font-size: 14px; font-weight: 400; line-height: 1.8; max-width: 70ch; margin: 0; white-space: pre-wrap; }
+  .line { height: 1px; width: 100%; background: var(--border); margin: 36px 0 30px; }
+  .sectionLabel { text-transform: uppercase; font-size: 11px; color: var(--black); font-weight: 700; letter-spacing: .16em; margin: 0 0 22px; }
+  .group + .group { margin-top: 28px; }
+  .group h3 { color: var(--black); font-size: 16px; font-weight: 700; line-height: 1.5; margin: 0 0 11px; }
+  .capabilities { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 8px 26px; list-style: none; padding: 0; margin: 0; }
+  .capabilities li { font-size: 13px; line-height: 1.6; color: var(--black); position: relative; padding-left: 15px; }
+  .capabilities li::before { content: ''; width: 4px; height: 4px; background: var(--purple); border-radius: 50%; position: absolute; top: 9px; left: 0; }
+  .deliver { border: 0; background: var(--deep); padding: 27px 29px 28px; margin-top: 35px; border-radius: 9px; }
+  .deliver h2 { color: #ffffff; font-size: 11px; text-transform: uppercase; letter-spacing: .16em; margin: 0 0 12px; }
+  .deliver p { font-size: 14px; line-height: 1.75; margin: 0; color: #ffffff; }
+  .footer { flex: none; min-height: 91px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 17px var(--gutter); background: #fff; }
+  .footerTitle { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .footerTitle strong { text-transform: uppercase; letter-spacing: .10em; font-size: 10px; color: var(--black); }
+  .footerTitle span { font-weight: 600; font-size: 12px; color: var(--black); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .arrows { display: flex; gap: 12px; flex: none; }
+  .loading { padding: 35px 0; color: var(--black); font-size: 14px; }
+  [hidden] { display: none !important; }
+  @media (max-width: 600px) {
+    :root { --gutter: 25px; --control: 42px; }
+    .topbar { min-height: 78px; }
+    .brand { font-size: 12px; }
+    .topRight { gap: 10px; }
+    .body { padding-top: 29px; }
+    .capabilities { grid-template-columns: 1fr; gap: 7px; }
+    .number { margin-bottom: 20px; }
+    .footer { min-height: 83px; }
+    .footerTitle { max-width: 48%; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+  .gallery { margin: 26px 0 30px; }
+  .photoFrame { position: relative; overflow: hidden; background: #efefef; border-radius: 9px; aspect-ratio: 16/10; }
+  .photoFrame img { display:block; width:100%; height:100%; object-fit:cover; filter:grayscale(1); }
+  .photoFallback { position:absolute; inset:0; display:grid; place-items:center; font-size:13px; color:var(--grey); }
+  .photoNav { position:relative; display:flex; align-items:center; justify-content:center; min-height:34px; margin-top:8px; }
+  .projectLocation { color:var(--grey); font-size:13px; line-height:1.5; margin:12px 0 0; }
+  .photoCount { position:absolute; left:0; color:var(--grey); font-size:12px; font-variant-numeric:tabular-nums; }
+  .photoDots { display:flex; align-items:center; gap:4px; }
+  .dot { display:grid; place-items:center; border:0; background:transparent; width:28px; height:28px; padding:0; border-radius:50%; }
+  .dot::after { content:''; width:8px; height:8px; border-radius:50%; background:var(--grey); }
+  .dot[aria-current="true"]::after,.dot:hover::after { background:var(--purple); }
+  .projectMeta { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; padding:23px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border); margin:0 0 25px; }
+  .projectMeta dt { font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; margin:0 0 7px; }
+  .projectMeta dd { font-size:16px; font-weight:600; margin:0; line-height:1.5; overflow-wrap:anywhere; }
+  .overview .sectionLabel { margin-bottom:12px; }
+  .circle:disabled { opacity:.35; cursor:default; }
+  .circle:disabled:hover { background:transparent; border-color:var(--black); color:var(--black); }
+  @media(max-width:600px) {
+    .projectMeta { grid-template-columns:1fr; gap:18px; }
+    .projectMeta dd { font-size:15px; }
+    .gallery { margin:22px 0 24px; }
+    .photoFrame { aspect-ratio:4/3; }
+  }
+</style>
+</head>
+<body>
+<div class="app" aria-label="ISOTROPE project details">
+  <header class="topbar">
+    <div><div class="brand" id="projectHeader">PROJECT DETAILS</div></div>
+    <div class="topRight">
+      <div class="pageCount" aria-live="polite"><span id="topCurrent">—</span><span class="separator">/</span><span id="topTotal">—</span></div>
+      <button type="button" class="circle close" id="close" aria-label="Close project details"><span class="glyph" aria-hidden="true">×</span></button>
+    </div>
+  </header>
+  <div id="scrollArea" class="scroll" tabindex="0">
+    <main class="body" id="content">
+      <div id="loading" class="loading" role="status">Loading project information…</div>
+      <article id="article" hidden>
+        <h1 class="title" id="title"></h1>
+        <p class="projectLocation" id="location" hidden></p>
+        <section class="gallery" id="gallery" aria-label="Project photographs">
+          <div class="photoFrame" id="photoFrame"><img id="photo" alt="" decoding="async"><div class="photoFallback" id="photoFallback" hidden>Photograph unavailable</div></div>
+          <div class="photoNav" id="photoNav">
+            <span class="photoCount" id="photoCount" aria-live="polite"></span>
+            <div class="photoDots" id="photoDots"></div>
+          </div>
+        </section>
+        <dl class="projectMeta" id="meta">
+          <div id="companyBlock"><dt>Client company</dt><dd id="company"></dd></div>
+          <div id="serviceBlock"><dt>Service contracted</dt><dd id="service"></dd></div>
+        </dl>
+        <section class="overview" id="overview"><h2 class="sectionLabel">Project overview</h2><p class="description" id="description"></p></section>
+      </article>
+    </main>
+  </div>
+  <footer class="footer">
+    <div class="footerTitle" aria-live="polite"><strong>Explore projects</strong><span id="footerProject">— / —</span></div>
+    <nav class="arrows" aria-label="Navigate between projects">
+      <button class="circle" type="button" id="prev" aria-label="Previous project" disabled><span class="glyph" aria-hidden="true">←</span></button>
+      <button class="circle" type="button" id="next" aria-label="Next project" disabled><span class="glyph" aria-hidden="true">→</span></button>
+    </nav>
+  </footer>
+</div>
+<script>
+(() => {
+  'use strict';
+  const PROTOCOL='ISOTROPE_PROJECTS_POPUP_V1';
+  const el=id=>document.getElementById(id);
+  const state={projects:[],index:0,photos:[],photoIndex:0,ready:false};
+  const pad=n=>String(n).padStart(2,'0');
+  const wrap=(n,len)=>(n%len+len)%len;
+  let retry=null, touchStart=null;
+  function send(action){window.parent.postMessage({type:PROTOCOL+'_'+action},'*')}
+  function mediaUrl(value){
+    const raw=typeof value==='string'?value:value?.src||value?.url||value?.uri||'';
+    if(raw.startsWith('wix:image://v1/')){
+      const id=raw.slice(15).split('/')[0];
+      return /^[a-zA-Z0-9_.~%-]+$/.test(id)?'https://static.wixstatic.com/media/'+id:'';
+    }
+    try{const url=new URL(raw);return url.protocol==='https:'?url.href:''}catch{return ''}
+  }
+  function galleryFor(p){
+    const seen=new Set(), images=[];
+    for(const value of [p.coverImage,...(Array.isArray(p.gallery)?p.gallery:[])]){
+      const url=mediaUrl(value);
+      if(url&&!seen.has(url)){seen.add(url);images.push(url)}
+      if(images.length===3)break;
+    }
+    return images;
+  }
+  function paintPhoto(){
+    const images=state.photos;
+    if(!images.length)return;
+    state.photoIndex=wrap(state.photoIndex,images.length);
+    const img=el('photo');
+    el('photoFallback').hidden=true;img.hidden=false;
+    img.alt=String(state.projects[state.index].title||'Project')+' — photograph '+(state.photoIndex+1);
+    img.src=images[state.photoIndex];
+    el('photoCount').textContent=pad(state.photoIndex+1)+' / '+pad(images.length);
+    [...el('photoDots').children].forEach((d,i)=>d.setAttribute('aria-current',String(i===state.photoIndex)));
+  }
+  function navigatePhoto(delta){if(state.photos.length>1){state.photoIndex+=delta;paintPhoto()}}
+  function renderGallery(p){
+    state.photos=galleryFor(p);state.photoIndex=0;
+    el('gallery').hidden=!state.photos.length;
+    el('photoNav').hidden=state.photos.length<2;
+    const dots=el('photoDots');dots.replaceChildren();
+    state.photos.forEach((_,i)=>{
+      const b=document.createElement('button');b.type='button';b.className='dot';
+      b.setAttribute('aria-label','Show photograph '+(i+1));
+      b.addEventListener('click',()=>{state.photoIndex=i;paintPhoto()});
+      dots.append(b);
+    });
+    if(state.photos.length)paintPhoto();
+    else {el('photo').removeAttribute('src');el('photoCount').textContent=''}
+  }
+  function render(){
+    const items=state.projects;
+    if(!items.length){
+      el('article').hidden=true;el('loading').hidden=false;el('loading').textContent='No projects available.';
+      el('prev').disabled=el('next').disabled=true;return;
+    }
+    state.index=wrap(state.index,items.length);
+    const p=items[state.index],number=pad(state.index+1),total=pad(items.length);
+    el('topCurrent').textContent=number;el('topTotal').textContent=total;
+    el('footerProject').textContent=number+' / '+total+' — '+String(p.title||'Project');
+    el('title').textContent=p.title||'Project';
+    el('company').textContent=p.clientCompany||'';
+    el('service').textContent=p.serviceType||'';
+    el('description').textContent=p.description||'';
+    el('companyBlock').hidden=!p.clientCompany;el('serviceBlock').hidden=!p.serviceType;
+    el('meta').hidden=!p.clientCompany&&!p.serviceType;el('overview').hidden=!p.description;
+    el('projectHeader').textContent=p.isDemo===true?'SAMPLE PROJECT':'PROJECT DETAILS';
+    el('location').textContent=p.location||'';
+    el('location').hidden=!p.location;
+    renderGallery(p);
+    el('prev').disabled=el('next').disabled=items.length<2;
+    el('loading').hidden=true;el('article').hidden=false;
+    el('scrollArea').scrollTop=0;
+    document.title=String(p.title||'Project')+' | ISOTROPE';
+  }
+  function navigateProject(delta){if(state.projects.length>1){state.index+=delta;render()}}
+  el('photo').addEventListener('error',()=>{el('photo').hidden=true;el('photoFallback').hidden=false});
+  el('prev').addEventListener('click',()=>navigateProject(-1));
+  el('next').addEventListener('click',()=>navigateProject(1));
+  el('close').addEventListener('click',()=>send('CLOSE'));
+  el('photoFrame').addEventListener('touchstart',e=>{const t=e.touches[0];touchStart=t?{x:t.clientX,y:t.clientY}:null},{passive:true});
+  el('photoFrame').addEventListener('touchend',e=>{if(!touchStart)return;const t=e.changedTouches[0];if(t){const dx=t.clientX-touchStart.x,dy=t.clientY-touchStart.y;if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)*1.4)navigatePhoto(dx<0?1:-1)}touchStart=null},{passive:true});
+  el('photoFrame').addEventListener('touchcancel',()=>{touchStart=null},{passive:true});
+  window.addEventListener('keydown',e=>{
+    if(e.key==='Escape'){send('CLOSE');return}
+    if(e.key!=='ArrowLeft'&&e.key!=='ArrowRight')return;
+    const delta=e.key==='ArrowRight'?1:-1;e.preventDefault();
+    if(el('gallery').contains(document.activeElement))navigatePhoto(delta);else navigateProject(delta);
+  });
+  window.addEventListener('message',event=>{
+    if(event.source!==window.parent)return;
+    const d=event.data||{};
+    if(d.type===PROTOCOL+'_INIT'){
+      if(state.ready)return;
+      state.ready=true;clearInterval(retry);
+      state.projects=(Array.isArray(d.projects)?d.projects:[]).filter(p=>p&&typeof p==='object').slice().sort((a,b)=>Number(a.sortOrder||0)-Number(b.sortOrder||0));
+      const i=state.projects.findIndex(p=>String(p._id||p.id)===String(d.projectId||''));
+      state.index=i>=0?i:0;render();
+    }else if(d.type===PROTOCOL+'_ERROR'){
+      clearInterval(retry);el('article').hidden=true;el('loading').hidden=false;
+      el('loading').textContent=String(d.message||'Unable to load project information.');
+    }
+  });
+  send('READY');
+  let attempts=0;
+  retry=setInterval(()=>{if(state.ready||++attempts>40){clearInterval(retry);if(!state.ready&&attempts>40&&el('loading').textContent==='Loading project information…')el('loading').textContent='Unable to connect to project information.';return}send('READY')},750);
+})();
+</script>
+</body>
+</html>
