@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>ISOTROPE — Why Isotrope</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  color-scheme: dark;
+  --deep: #340566;
+  --white: #ffffff;
+  --lavender: #a477eb;
+  --border: rgba(164,119,235,.38);
+  --copy: rgba(255,255,255,.84);
+  --gap: max(10px,1vw);
+  --corner: max(10px,1vw);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html, body {
+  width: 100%; margin: 0; padding: 0;
+  background: var(--deep); color: var(--white);
+  font-family: Poppins, Arial, sans-serif;
+}
+.why {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+.intro {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  align-items: center;
+  gap: max(24px,4vw);
+  margin: 0 0 max(28px,3.2vw);
+}
+.eyebrow {
+  display: inline-block;
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,.6);
+  border-radius: 100px;
+  padding: 5px 12px;
+  font-size: 11px;
+  line-height: 1.2;
+  font-weight: 400;
+  margin: 0 0 max(12px,1.2vw);
+}
+.intro h1 {
+  font-size: clamp(32px,3.8vw,72px);
+  font-weight: 700;
+  letter-spacing: -.035em;
+  line-height: 1.12;
+  margin: 0;
+}
+.intro h1 span { color: var(--lavender); }
+.intro p {
+  margin: 0;
+  font-size: clamp(14px,1.333333vw,22px);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--white);
+  max-width: 60ch;
+}
+.points {
+  display: grid;
+  grid-template-columns: repeat(4,minmax(0,1fr));
+  grid-auto-rows: 1fr;
+  align-items: stretch;
+  gap: var(--gap);
+}
+.point {
+  min-width: 0;
+  min-height: 18.933333vw;
+  border: 1px solid var(--border);
+  border-radius: var(--corner);
+  background: var(--deep);
+  padding: max(18px,2vw);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: max(10px,.8vw);
+  transition: background-color .28s ease,border-color .28s ease;
+}
+.point h2 {
+  font-size: max(18px,1.533333vw);
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0;
+  margin: 0;
+  color: var(--white);
+  overflow-wrap: break-word;
+  transition: color .28s ease;
+}
+.point p {
+  font-size: clamp(12px,.933333vw,18px);
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0;
+  margin: 0;
+  color: var(--copy);
+  overflow-wrap: break-word;
+  transition: color .28s ease;
+}
+@media (hover:hover) and (pointer:fine) {
+  .point:hover {
+    background: var(--white);
+    border-color: var(--white);
+  }
+  .point:hover h2 { color: var(--deep); }
+  .point:hover p { color: #000000; }
+}
+@media (max-width: 900px) {
+  .intro { gap: 24px; }
+  .points { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .point { min-height: 0; padding: 26px 22px; }
+}
+@media (max-width: 650px) {
+  .intro { grid-template-columns: 1fr; gap: 18px; margin-bottom: 26px; }
+  .intro h1 { font-size: 36px; }
+  .intro p { font-size: 14px; }
+  .points { grid-template-columns: 1fr; grid-auto-rows: auto; gap: 12px; }
+  .point { padding: 28px 24px; border-radius: 15px; }
+  .point h2 { font-size: 18px; }
+  .point p { font-size: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; }
+}
+</style>
+</head>
+<body>
+<section class="why" aria-labelledby="whyTitle">
+  <header class="intro">
+    <div>
+      <div class="eyebrow">WHY US</div>
+      <h1 id="whyTitle">WHY <span>ISOTROPE</span></h1>
+    </div>
+    <p>ISOTROPE combines Tier 1 experience, engineering judgement and practical access capability to deliver safer, smarter and more reliable outcomes for complex buildings.</p>
+  </header>
+  <div class="points">
+    <article class="point">
+      <h2>Whole-of-life building know-how</h2>
+      <p>Our team has worked on buildings from façade installation through to maintenance, inspection and repair. We know how they're put together, so we fix them properly, with trade-quality work.</p>
+    </article>
+    <article class="point">
+      <h2>Tier 1 standards on every job</h2>
+      <p>Our IRATA-certified team has worked on some of Melbourne's largest projects, and brings the same safety standards and discipline to every job, large or small.</p>
+    </article>
+    <article class="point">
+      <h2>Root-cause fixes, not patch-ups</h2>
+      <p>Our engineering background means we trace every defect to its root cause, so your building gets lasting solutions, not a patchwork of quick fixes.</p>
+    </article>
+    <article class="point">
+      <h2>One team, inspection to repair</h2>
+      <p>The people who find the problem are the people who fix it, so nothing gets lost between the report and the works, and you deal with one team from start to finish.</p>
+    </article>
+    <article class="point">
+      <h2>Minimal disruption</h2>
+      <p>Rope access and drones reach hard-to-access areas quickly, keeping disruption to residents low and site programs moving.</p>
+    </article>
+    <article class="point">
+      <h2>Full package or extra hands</h2>
+      <p>We take on a full work package as lead contractor or slot in as skilled labour alongside your trades.</p>
+    </article>
+    <article class="point">
+      <h2>Insured and rescue-ready</h2>
+      <p>$20M public liability cover, with in-house rescue planning and standby rescue capability for work at height and in confined spaces.</p>
+    </article>
+    <article class="point">
+      <h2>Clear communication, start to finish</h2>
+      <p>We keep clients informed from first inspection to final delivery, with practical reporting, clear coordination and no guesswork along the way.</p>
+    </article>
+  </div>
+</section>
+</body>
+</html>
