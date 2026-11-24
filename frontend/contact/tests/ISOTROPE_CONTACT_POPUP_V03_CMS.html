@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>ISOTROPE | Contact us</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --background: #ffffff;
+    --surface: #ffffff;
+    --black: #000000;
+    --white: #ffffff;
+    --purple: #8b07d1;
+    --hover: #8d45ff;
+    --deep: #340566;
+    --grey: #5b5b5b;
+    --muted: #5b5b5b;
+    --border: rgba(0,0,0,.16);
+    --gutter: clamp(24px, 5.5vw, 62px);
+    --control: 46px;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; margin: 0; background: #ffffff; }
+  html { overflow: hidden; }
+  body { color: var(--black); background: var(--background); font-family: Poppins, Arial, sans-serif; }
+  button { font: inherit; cursor: pointer; }
+  button:focus-visible { outline: 2px solid var(--purple); outline-offset: 3px; }
+  .app { display: flex; flex-direction: column; height: 100%; min-height: 0; overflow: hidden; background: #fff; }
+  .topbar { flex: none; min-height: 84px; display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 20px var(--gutter) 16px; border-bottom: 1px solid var(--border); background: #fff; }
+  .brand { color: var(--black); font-weight: 700; font-size: 14px; letter-spacing: .09em; text-transform: uppercase; }
+  .topRight { display: flex; align-items: center; gap: 19px; }
+  .pageCount { color: var(--black); font-size: 13px; font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .pageCount .separator { padding: 0 5px; color: var(--grey); font-weight: 400; }
+  .circle { width: var(--control); height: var(--control); flex: 0 0 var(--control); display: inline-grid; place-items: center; color: var(--black); border: 1px solid var(--black); border-radius: 50%; background: transparent; transition: background-color .2s, border-color .2s, color .2s; }
+  .circle:hover { background: var(--purple); border-color: var(--purple); color: var(--white); }
+  .circle .glyph { font-family: Arial, sans-serif; font-size: 22px; font-weight: 400; line-height: 1; }
+  .circle.close { border-color: var(--border); }
+  .circle.close:hover { border-color: var(--purple); }
+  .scroll { min-height: 0; flex: 1 1 auto; overflow-y: auto; overflow-x: hidden; overscroll-behavior-y: contain; scrollbar-width: thin; scrollbar-color: #a5a5a5 #ffffff; background: #fff; }
+  .scroll::-webkit-scrollbar { width: 6px; }
+  .scroll::-webkit-scrollbar-thumb { background: #a5a5a5; border-radius: 6px; }
+  .body { padding: 36px var(--gutter) 34px; max-width: 930px; margin: 0 auto; width: 100%; }
+  .number { color: #000000; font: 400 clamp(62px, 10vw, 105px)/.94 'Archivo Black', Poppins, sans-serif; letter-spacing: -.085em; margin: 0 0 24px; }
+  .title { color: var(--black); font: 400 clamp(27px, 4.4vw, 46px)/1.18 'Archivo Black', Poppins, sans-serif; letter-spacing: -.035em; text-transform: uppercase; margin: 0; overflow-wrap: break-word; }
+  .title .accent { color: var(--black); }
+  .strap { color: var(--black); font-size: clamp(16px, 2.2vw, 20px); line-height: 1.45; font-weight: 600; margin: 24px 0 15px; }
+  .description { color: var(--black); font-size: 14px; font-weight: 400; line-height: 1.8; max-width: 70ch; margin: 0; white-space: pre-wrap; }
+  .line { height: 1px; width: 100%; background: var(--border); margin: 36px 0 30px; }
+  .sectionLabel { text-transform: uppercase; font-size: 11px; color: var(--black); font-weight: 700; letter-spacing: .16em; margin: 0 0 22px; }
+  .group + .group { margin-top: 28px; }
+  .group h3 { color: var(--black); font-size: 16px; font-weight: 700; line-height: 1.5; margin: 0 0 11px; }
+  .capabilities { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 8px 26px; list-style: none; padding: 0; margin: 0; }
+  .capabilities li { font-size: 13px; line-height: 1.6; color: var(--black); position: relative; padding-left: 15px; }
+  .capabilities li::before { content: ''; width: 4px; height: 4px; background: var(--purple); border-radius: 50%; position: absolute; top: 9px; left: 0; }
+  .deliver { border: 0; background: var(--deep); padding: 27px 29px 28px; margin-top: 35px; border-radius: 9px; }
+  .deliver h2 { color: #ffffff; font-size: 11px; text-transform: uppercase; letter-spacing: .16em; margin: 0 0 12px; }
+  .deliver p { font-size: 14px; line-height: 1.75; margin: 0; color: #ffffff; }
+  .footer { flex: none; min-height: 91px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 17px var(--gutter); background: #fff; }
+  .footerTitle { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .footerTitle strong { text-transform: uppercase; letter-spacing: .10em; font-size: 10px; color: var(--black); }
+  .footerTitle span { font-weight: 600; font-size: 12px; color: var(--black); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .arrows { display: flex; gap: 12px; flex: none; }
+  .loading { padding: 35px 0; color: var(--black); font-size: 14px; }
+  [hidden] { display: none !important; }
+  @media (max-width: 600px) {
+    :root { --gutter: 25px; --control: 42px; }
+    .topbar { min-height: 78px; }
+    .brand { font-size: 12px; }
+    .topRight { gap: 10px; }
+    .body { padding-top: 29px; }
+    .capabilities { grid-template-columns: 1fr; gap: 7px; }
+    .number { margin-bottom: 20px; }
+    .footer { min-height: 83px; }
+    .footerTitle { max-width: 48%; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+  .contacts { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px 24px; padding:0 0 38px; margin:0 0 44px; border-bottom:1px solid var(--border); }
+  .contact { display:flex; flex-direction:column; min-width:0; gap:7px; }
+  .contact span { font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--black); }
+  .contact a { color:var(--black); font-size:clamp(14px,2.4vw,18px); font-weight:600; text-decoration:none; overflow-wrap:anywhere; transition:color .2s; }
+  .contact a:hover,.contact a:focus-visible { color:var(--purple); text-decoration:underline; }
+  .fields { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; }
+  .field { display:flex; flex-direction:column; gap:8px; min-width:0; }
+  .wide { grid-column:1/-1; }
+  .field label { font-size:13px; font-weight:500; line-height:1.5; }
+  .field input,.field select,.field textarea { appearance:auto; width:100%; min-width:0; color:var(--black); font:400 14px/1.5 Poppins,Arial,sans-serif; background:#fff; border:1px solid #a5a5a5; border-radius:6px; min-height:48px; padding:12px 14px; outline:none; transition:border-color .2s; }
+  .field input:focus,.field select:focus,.field textarea:focus { border-color:var(--purple); box-shadow:0 0 0 1px var(--purple); }
+  .field input::placeholder,.field textarea::placeholder { color:var(--grey); opacity:1; }
+  .field textarea { min-height:108px; resize:vertical; }
+  .consent { display:flex; gap:10px; align-items:flex-start; font-size:12px; color:var(--grey); margin-top:24px; line-height:1.65; cursor:pointer; }
+  .consent input { width:17px; height:17px; flex:0 0 17px; accent-color:var(--purple); margin:1px 0 0; }
+  .consent input:focus-visible { outline:2px solid var(--purple); outline-offset:3px; }
+  .submit { flex:none; border:1px solid var(--purple); border-radius:6px; background:var(--purple); color:#fff; min-height:44px; padding:12px 24px; font-size:11px; font-weight:600; letter-spacing:.02em; transition:background-color .2s,border-color .2s; }
+  .submit:hover:not(:disabled) { background:var(--hover); border-color:var(--hover); }
+  .submit:disabled { opacity:.55; cursor:default; }
+  .status { margin:0; min-width:0; font-size:12px; line-height:1.5; color:var(--grey); overflow-wrap:anywhere; }
+  .status[data-state="success"] { color:var(--black); font-weight:600; }
+  .status[data-state="error"] { color:var(--black); font-weight:600; }
+  @media(max-width:480px) { .fields,.contacts { grid-template-columns:1fr; gap:20px; } .contacts { padding-bottom:30px; margin-bottom:34px; } .footer { flex-wrap:wrap; gap:10px; } .submit { width:100%; } .status { flex:1 0 100%; } }
+</style>
+</head>
+<body>
+<div class="app" aria-label="ISOTROPE contact form">
+  <header class="topbar">
+    <div class="brand">CONTACT US</div>
+    <button type="button" class="circle close" id="close" aria-label="Close contact form"><span class="glyph" aria-hidden="true">×</span></button>
+  </header>
+  <div class="scroll" id="scrollArea">
+    <main class="body">
+      <div class="contacts" id="contacts">
+        <div class="contact"><span>EMAIL US</span><a id="emailLink" href="mailto:admin@isotrope.com.au">admin@isotrope.com.au</a></div>
+        <div class="contact" id="phoneBlock" hidden><span>CALL US</span><a id="phoneLink"></a></div>
+      </div>
+      <form id="enquiryForm">
+        <div class="fields">
+          <div class="field"><label for="fullName">Full name *</label><input id="fullName" name="fullName" autocomplete="name" maxlength="120" required placeholder="Your name"></div>
+          <div class="field"><label for="company">Company</label><input id="company" name="company" autocomplete="organization" maxlength="160" placeholder="Company name"></div>
+          <div class="field"><label for="email">Email address *</label><input id="email" name="email" type="email" autocomplete="email" maxlength="254" required placeholder="Your email address"></div>
+          <div class="field"><label for="phone">Phone number</label><input id="phone" name="phone" type="tel" autocomplete="tel" maxlength="40" placeholder="Your phone number"></div>
+          <div class="field wide"><label for="service">Service of interest</label><select id="service" name="serviceId"><option value="">Select a service</option><option value="other">Other / Not sure</option></select></div>
+          <div class="field wide"><label for="message">Tell us about your project *</label><textarea id="message" name="message" maxlength="3000" required placeholder="Project requirements, scope or any questions"></textarea></div>
+        </div>
+        <label class="consent"><input type="checkbox" id="consent" required><span>I consent to ISOTROPE using my details to respond to this enquiry. *</span></label>
+      </form>
+    </main>
+  </div>
+  <footer class="footer">
+    <p id="status" class="status" role="status" aria-live="polite">* Required fields</p>
+    <button type="submit" form="enquiryForm" class="submit" id="submit" disabled>SEND ENQUIRY</button>
+  </footer>
+</div>
+<script>
+(() => {
+  'use strict';
+  const PROTOCOL = 'ISOTROPE_CONTACT_POPUP_V1';
+  const el = id => document.getElementById(id);
+  const form = el('enquiryForm'), submit = el('submit');
+  let connected = false, busy = false, currentRequest = '', retries = 0, timer;
+  function send(type,payload={}) { window.parent.postMessage({type:PROTOCOL+'_'+type,...payload},'*'); }
+  function status(message,state='') { const node=el('status'); node.textContent=message; node.dataset.state=state; }
+  function setBusy(value) { busy=value; submit.disabled=!connected||busy; submit.textContent=busy?'SENDING…':'SEND ENQUIRY'; form.setAttribute('aria-busy',String(busy)); }
+  function configure(data) {
+    const phone=typeof data.phone==='string'?data.phone.trim():'';
+    const tel=phone.replace(/[\s().-]/g,'');
+    if(/^\+?\d{7,15}$/.test(tel)){
+      el('phoneLink').textContent=phone;el('phoneLink').href='tel:'+tel;el('phoneBlock').hidden=false;
+    }
+    const services=Array.isArray(data.services)?data.services:[];
+    const selected=el('service').value;
+    const options=[new Option('Select a service','')];
+    for(const service of services){
+      if(service&&typeof service.label==='string'&&typeof service.value==='string'&&service.value&&service.value!=='other')options.push(new Option(service.label,service.value));
+    }
+    options.push(new Option('Other / Not sure','other'));
+    el('service').replaceChildren(...options);
+    if(options.some(o=>o.value===selected))el('service').value=selected;
+  }
+  form.addEventListener('submit',event=>{
+    event.preventDefault();
+    if(!connected||busy||!form.reportValidity())return;
+    const data={fullName:el('fullName').value.trim(),company:el('company').value.trim(),email:el('email').value.trim(),phone:el('phone').value.trim(),serviceId:el('service').value,message:el('message').value.trim(),consent:el('consent').checked};
+    if(!data.fullName||!data.message){status('Please complete the required fields.','error');return;}
+    if(data.phone&&!/^[+\d\s().-]{5,40}$/.test(data.phone)){status('Please enter a valid phone number.','error');el('phone').focus();return;}
+    currentRequest=Date.now().toString(36)+'-'+Math.random().toString(36).slice(2);
+    setBusy(true);status('Sending your enquiry…');send('SUBMIT',{requestId:currentRequest,data});
+  });
+  el('close').addEventListener('click',()=>send('CLOSE'));
+  window.addEventListener('keydown',event=>{if(event.key==='Escape')send('CLOSE')});
+  window.addEventListener('message',event=>{
+    if(event.source!==window.parent)return;
+    const data=event.data||{};
+    if(data.type===PROTOCOL+'_INIT'){
+      if(connected)return;
+      connected=true;clearInterval(timer);configure(data);setBusy(false);status('* Required fields');
+    }else if(data.type===PROTOCOL+'_RESULT'&&busy&&data.requestId===currentRequest){
+      if(data.ok===true){form.reset();status('Thank you. Your enquiry has been received.','success')}
+      else status('Your enquiry could not be sent. Please try again.','error');
+      currentRequest='';setBusy(false);
+    }
+  });
+  send('READY');
+  timer=setInterval(()=>{if(connected||++retries>40){clearInterval(timer);if(!connected)status('Unable to connect. Please reopen the form or email us.','error');return;}send('READY')},750);
+})();
+</script>
+</body>
+</html>
