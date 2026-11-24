@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Isotrope — How we work</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--black:#000;--white:#fff;--grey:#5b5b5b;--light:#a5a5a5;--purple:#8b07d1;--lavender:#a477eb;--step-purple:#8d45ff;--progress:0}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;width:100%;background:#000;color:#fff;font-family:'Poppins',Arial,sans-serif}
+body{min-width:0}
+.timeline{width:100%;margin:0 auto;padding:1.333333vw 1.466667vw 1.6vw}
+.stages{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1vw;align-items:stretch;isolation:isolate}
+.track{position:absolute;left:var(--track-x,0px);top:var(--track-y,0px);width:var(--track-length,0px);height:2px;transform:translateY(-50%);background:var(--grey);z-index:0;pointer-events:none}
+.track-fill{position:absolute;inset:0 auto 0 0;width:100%;height:100%;background:var(--step-purple);transform:scaleX(var(--progress));transform-origin:left center;transition:transform .28s ease-out}
+.station{position:relative;display:flex;flex-direction:column;min-width:0;gap:1.333333vw}
+.station-head{appearance:none;border:0;background:none;color:inherit;font:inherit;position:relative;display:flex;flex-direction:column;align-items:center;gap:.8vw;padding:0;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.index{font-size:max(36px,3.866667vw);font-weight:700;line-height:1.1;letter-spacing:-.055em;color:var(--grey);font-variant-numeric:tabular-nums;transition:color .25s ease}
+.node{position:relative;display:block;width:clamp(18px,1.466667vw,30px);height:clamp(18px,1.466667vw,30px);flex:0 0 clamp(18px,1.466667vw,30px);border:1px solid var(--grey);border-radius:50%;background:#000;transition:border-color .25s ease;z-index:1}
+.node::after{content:"";position:absolute;left:50%;top:50%;width:clamp(6px,.533333vw,11px);height:clamp(6px,.533333vw,11px);border-radius:50%;background:var(--grey);transform:translate(-50%,-50%);transition:background .25s ease}
+.content{position:relative;flex:1;min-width:0;min-height:18.933333vw;padding:2vw;border:1px solid #5b5b5b;border-radius:1vw;background:#000;transition:border-color .28s ease,transform .28s ease}
+.content h2{margin:0 0 .8vw;font-size:max(18px,1.533333vw);line-height:1.5;letter-spacing:0;font-weight:600;color:#fff}
+.content p{margin:0;color:#fff;font-size:clamp(12px,.933333vw,18px);line-height:1.2;font-weight:400;overflow-wrap:break-word}
+.station.is-passed .node,.station.is-current .node{border-color:var(--step-purple)}
+.station.is-passed .node::after,.station.is-current .node::after{background:var(--step-purple)}
+.station.is-current .index{color:var(--lavender)}
+.station.is-current .content{border-color:var(--step-purple);transform:translateY(-3px)}
+.station-head:focus-visible{outline:1px solid var(--lavender);outline-offset:5px;border-radius:6px}
+@media(max-width:650px){
+ .timeline{padding:20px 18px 24px;max-width:520px}
+ .stages{grid-template-columns:1fr;gap:24px}
+ .track{width:2px;height:var(--track-length,0px);transform:translateX(-50%)}
+ .track-fill{transform:scaleY(var(--progress));transform-origin:center top}
+ .station{display:flex;flex-direction:column;gap:15px;align-items:stretch}
+ .station-head{display:grid;grid-template-columns:24px minmax(0,1fr);gap:15px;align-items:center;justify-items:start}
+ .node{grid-column:1;grid-row:1;justify-self:center;align-self:center}
+ .index{grid-column:2;grid-row:1;font-size:36px;line-height:1.05;text-align:left}
+ .content{margin-left:39px;min-height:0;padding:20px;border-radius:15px}
+ .content h2{font-size:18px;margin-bottom:10px}
+ .content p{font-size:14px;line-height:1.2}
+ .station.is-current .content{transform:translateX(2px)}
+ .station-head:focus-visible .node{outline:2px solid var(--lavender);outline-offset:4px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important}.station.is-current .content{transform:none!important}}
+</style>
+</head>
+<body>
+<main class="timeline" aria-label="How we work">
+ <div class="stages">
+  <div class="track" aria-hidden="true"><div class="track-fill"></div></div>
+  <article class="station is-current">
+   <button type="button" class="station-head" aria-label="01 Plan" aria-pressed="true"><span class="index" aria-hidden="true">01</span><span class="node" aria-hidden="true"></span></button>
+   <div class="content"><h2>Plan</h2><p>Before anyone goes up, we understand your building, your program and the risks, so the job runs safely, on time and without surprises.</p></div>
+  </article>
+  <article class="station">
+   <button type="button" class="station-head" aria-label="02 Access" aria-pressed="false"><span class="index" aria-hidden="true">02</span><span class="node" aria-hidden="true"></span></button>
+   <div class="content"><h2>Access</h2><p>Every building is different, so our access is tailored to it. IRATA rope access is our core, and we bring in new tools like drones wherever they make the work safer and more efficient.</p></div>
+  </article>
+  <article class="station">
+   <button type="button" class="station-head" aria-label="03 Deliver" aria-pressed="false"><span class="index" aria-hidden="true">03</span><span class="node" aria-hidden="true"></span></button>
+   <div class="content"><h2>Deliver</h2><p>Whether it's an inspection report, a repair or specialist crews on your project, the work is done right the first time, safely and on program.</p></div>
+  </article>
+ </div>
+</main>
+<script>
+(()=>{'use strict';
+ const timeline=document.querySelector('.timeline');
+ const stages=timeline.querySelector('.stages');
+ const stations=[...stages.querySelectorAll('.station')];
+ const buttons=stations.map(s=>s.querySelector('button'));
+ const nodes=stations.map(s=>s.querySelector('.node'));
+ const mobile=matchMedia('(max-width:650px)');
+ const hover=matchMedia('(hover:hover) and (pointer:fine)');
+ const clamp=n=>Math.max(0,Math.min(1,n));
+ let baseProgress=0,preview=null,lastVisibleProgress=null,positions=[0,.5,1];
+ function geometry(){
+  const rect=stages.getBoundingClientRect();
+  const centers=nodes.map(n=>{const r=n.getBoundingClientRect();return {x:r.left+r.width/2-rect.left,y:r.top+r.height/2-rect.top};});
+  const vertical=mobile.matches,first=centers[0],last=centers[centers.length-1];
+  const length=vertical?last.y-first.y:last.x-first.x;
+  stages.style.setProperty('--track-x',`${first.x}px`);
+  stages.style.setProperty('--track-y',`${first.y}px`);
+  stages.style.setProperty('--track-length',`${Math.max(0,length)}px`);
+  positions=centers.map(c=>length>0?(vertical?c.y-first.y:c.x-first.x)/length:0);
+  paint(preview??baseProgress);
+ }
+ function paint(p){
+  p=clamp(p);stages.style.setProperty('--progress',p.toFixed(5));
+  let active=0;for(let i=1;i<positions.length;i++){if(p>=(positions[i-1]+positions[i])/2)active=i;}
+  stations.forEach((s,i)=>{s.classList.toggle('is-current',i===active);s.classList.toggle('is-passed',i<active);buttons[i].setAttribute('aria-pressed',String(i===active));});
+ }
+ function select(i){baseProgress=positions[i];preview=null;paint(baseProgress);}
+ stations.forEach((s,i)=>{
+  s.addEventListener('pointerenter',()=>{if(hover.matches){preview=positions[i];paint(preview);}});
+  s.addEventListener('pointerleave',()=>{if(hover.matches){preview=null;paint(baseProgress);}});
+  s.querySelector('.content').addEventListener('click',()=>select(i));
+  buttons[i].addEventListener('click',()=>select(i));
+  buttons[i].addEventListener('keydown',e=>{let next=i;
+   if(e.key==='ArrowRight'||e.key==='ArrowDown')next=Math.min(stations.length-1,i+1);
+   else if(e.key==='ArrowLeft'||e.key==='ArrowUp')next=Math.max(0,i-1);
+   else if(e.key==='Home')next=0;else if(e.key==='End')next=stations.length-1;else return;
+   e.preventDefault();select(next);buttons[next].focus({preventScroll:true});
+  });
+ });
+ // A root-null IntersectionObserver observes clipping by ancestor viewports,
+ // including cross-origin iframe hosts, without reading window.parent.scrollY.
+ // Entry fills the first half; exit fills the second half. Fully visible = midpoint.
+ if('IntersectionObserver' in window){
+  const observer=new IntersectionObserver(entries=>{
+   const e=entries[entries.length-1],r=e.boundingClientRect,v=e.intersectionRect;
+   if(!r.height)return;
+   let progress;
+   if(e.isIntersecting&&v.height>0){
+    const clippedTop=clamp((v.top-r.top)/r.height);
+    const clippedBottom=clamp((r.bottom-v.bottom)/r.height);
+    progress=clamp((1+clippedTop-clippedBottom)/2);
+   }else if(e.rootBounds){
+    progress=r.bottom<=e.rootBounds.top?1:0;
+   }else if(lastVisibleProgress!==null){
+    progress=lastVisibleProgress>.5?1:0;
+   }else{return;}
+   if(lastVisibleProgress===null||Math.abs(progress-lastVisibleProgress)>.001){
+    lastVisibleProgress=progress;baseProgress=progress;if(preview===null)paint(baseProgress);
+   }
+  },{root:null,threshold:Array.from({length:101},(_,i)=>i/100)});
+  observer.observe(timeline);
+ }
+ if('ResizeObserver' in window)new ResizeObserver(geometry).observe(stages);
+ window.addEventListener('resize',geometry,{passive:true});
+ if(document.fonts)document.fonts.ready.then(geometry);
+ geometry();
+})();
+</script>
+</body>
+</html>
