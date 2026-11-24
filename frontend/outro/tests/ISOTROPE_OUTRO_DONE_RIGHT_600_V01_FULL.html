@@ -1,0 +1,1348 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8" />
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1"
+/>
+
+<title>ISOTROPE — DONE RIGHT. | Cinematic Outro</title>
+
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Poppins:wght@400;500;600;700&display=swap');
+
+
+:root{
+  --bg:#08090B;
+  --white:#FFFFFF;
+}
+
+
+*{
+  box-sizing:border-box;
+}
+
+
+html,
+body{
+  margin:0;
+
+  width:100%;
+  height:100%;
+
+  background:var(--bg);
+
+  font-family:
+    'Poppins',
+    Arial,
+    sans-serif;
+}
+
+
+body{
+  overflow:hidden;
+
+  touch-action:pan-y;
+}
+
+
+/* =========================================================
+   OUTRO
+   SAME ROOT ARCHITECTURE AS HERO
+   ========================================================= */
+
+.outro{
+  position:relative;
+
+  width:100%;
+
+  height:100%;
+  min-height:0;
+
+  overflow:hidden;
+
+  isolation:isolate;
+
+  background:var(--bg);
+}
+
+
+/* =========================================================
+   VIDEO
+   EXACT HERO VALUES
+   ========================================================= */
+
+.outro__video{
+  position:absolute;
+
+  inset:0;
+
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+
+  z-index:-3;
+
+  transform:scale(1.01);
+
+  filter:
+    contrast(1.06)
+    brightness(.72);
+
+  will-change:
+    transform,
+    filter;
+}
+
+
+/* =========================================================
+   SHADE
+   EXACT HERO VALUES
+   ========================================================= */
+
+.outro__shade{
+  position:absolute;
+
+  inset:0;
+
+  z-index:-2;
+
+  pointer-events:none;
+
+  background:
+
+    linear-gradient(
+      90deg,
+
+      rgba(4,5,7,.72) 0%,
+
+      rgba(4,5,7,.38) 36%,
+
+      rgba(4,5,7,.14) 68%,
+
+      rgba(4,5,7,.06) 100%
+    ),
+
+    linear-gradient(
+      180deg,
+
+      rgba(4,5,7,.08) 0%,
+
+      rgba(4,5,7,.02) 53%,
+
+      rgba(4,5,7,.58) 100%
+    );
+}
+
+
+/* =========================================================
+   POSITIONING ONLY
+
+   NO:
+   opacity
+   transform
+   filter
+   z-index
+   isolation
+
+   Therefore the anchor does not alter X-Ray compositing.
+   ========================================================= */
+
+.outro__word-anchor{
+  position:absolute;
+
+  left:clamp(18px,3vw,48px);
+  right:clamp(18px,3vw,48px);
+
+  bottom:clamp(24px,4vh,46px);
+
+  width:auto;
+
+  display:flex;
+
+  justify-content:center;
+  align-items:flex-end;
+
+  pointer-events:none;
+}
+
+
+/* =========================================================
+   DONE RIGHT.
+
+   BRAND TYPOGRAPHY + XRAY BASE.
+
+   Fade is performed through alpha channels only.
+   ========================================================= */
+
+.outro__word{
+
+  --base-a:0;
+
+  --stroke-a:0;
+
+  --shadow-1-a:0;
+  --shadow-2-a:0;
+
+  --sweep-1-a:0;
+  --sweep-2-a:0;
+  --sweep-3-a:0;
+  --sweep-4-a:0;
+  --sweep-5-a:0;
+
+
+  position:relative;
+
+  display:block;
+
+  width:max-content;
+  max-width:100%;
+
+  margin:0;
+  padding:0;
+
+  font-family:
+    'Archivo Black',
+    Arial,
+    sans-serif;
+
+  font-size:
+    clamp(
+      28px,
+      7vw,
+      132px
+    );
+
+  font-weight:400;
+
+  line-height:.96;
+
+  letter-spacing:-.045em;
+
+  text-transform:uppercase;
+
+  white-space:nowrap;
+  text-align:center;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      var(--base-a)
+    );
+
+  mix-blend-mode:difference;
+
+  filter:contrast(1.16);
+
+  pointer-events:none;
+}
+
+
+/* =========================================================
+   HERO XRAY EDGE / GLOW
+
+   FINAL STATE:
+   stroke = .42
+   shadows = .11 / .06
+   opacity = .68
+
+   EXACT HERO.
+   ========================================================= */
+
+.outro__word::before{
+  content:attr(data-text);
+
+  position:absolute;
+
+  inset:0;
+
+  pointer-events:none;
+
+  color:transparent;
+
+  -webkit-text-stroke:
+    .75px
+    rgba(
+      255,
+      255,
+      255,
+      var(--stroke-a)
+    );
+
+  text-shadow:
+
+    0 0 5px
+    rgba(
+      255,
+      255,
+      255,
+      var(--shadow-1-a)
+    ),
+
+    0 0 13px
+    rgba(
+      255,
+      255,
+      255,
+      var(--shadow-2-a)
+    );
+
+  mix-blend-mode:screen;
+
+  opacity:.68;
+}
+
+
+/* =========================================================
+   HERO XRAY SWEEP
+
+   FINAL GRADIENT VALUES:
+   .01 / .05 / .46 / .07 / .01
+
+   EXACT HERO.
+
+   Animation opacity remains completely untouched.
+   ========================================================= */
+
+.outro__word::after{
+  content:attr(data-text);
+
+  position:absolute;
+
+  inset:0;
+
+  pointer-events:none;
+
+  color:transparent;
+
+  background:
+
+    linear-gradient(
+      108deg,
+
+      rgba(
+        255,
+        255,
+        255,
+        var(--sweep-1-a)
+      ) 0%,
+
+      rgba(
+        255,
+        255,
+        255,
+        var(--sweep-2-a)
+      ) 31%,
+
+      rgba(
+        255,
+        255,
+        255,
+        var(--sweep-3-a)
+      ) 48%,
+
+      rgba(
+        255,
+        255,
+        255,
+        var(--sweep-4-a)
+      ) 58%,
+
+      rgba(
+        255,
+        255,
+        255,
+        var(--sweep-5-a)
+      ) 100%
+    );
+
+  background-size:230% 100%;
+
+  background-position:145% 0;
+
+  -webkit-background-clip:text;
+
+  background-clip:text;
+
+  -webkit-text-fill-color:transparent;
+
+  mix-blend-mode:screen;
+
+  animation:
+
+    xraySweep
+
+    8.2s
+
+    cubic-bezier(.45,0,.18,1)
+
+    infinite;
+}
+
+
+/* =========================================================
+   EXACT HERO XRAY ANIMATION
+   ========================================================= */
+
+@keyframes xraySweep{
+
+  0%,
+  62%{
+
+    background-position:
+      145% 0;
+
+    opacity:.10;
+
+  }
+
+
+  69%{
+
+    opacity:.55;
+
+  }
+
+
+  84%{
+
+    opacity:.30;
+
+  }
+
+
+  96%,
+  100%{
+
+    background-position:
+      -120% 0;
+
+    opacity:.08;
+
+  }
+
+}
+
+
+/* =========================================================
+   TABLET
+   EXACT HERO TYPOGRAPHY
+   ========================================================= */
+
+@media (max-width:1000px){
+
+  .outro__word-anchor{
+    bottom:30px;
+  }
+
+
+  .outro__word{
+
+    font-size:
+      clamp(
+        28px,
+        7vw,
+        74px
+      );
+
+    line-height:.92;
+
+    letter-spacing:-.030em;
+
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   EXACT HERO TYPOGRAPHY
+   ========================================================= */
+
+@media (max-width:750px){
+
+  .outro__word-anchor{
+    bottom:24px;
+  }
+
+
+  .outro__word{
+
+    font-size:
+      clamp(
+        23px,
+        7vw,
+        54px
+      );
+
+    line-height:.94;
+
+    letter-spacing:-.028em;
+
+  }
+
+}
+
+
+/* =========================================================
+   SAME HERO ACCESSIBILITY BEHAVIOR
+   ========================================================= */
+
+@media (prefers-reduced-motion:reduce){
+
+  .outro__word::after{
+    animation:none;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<section class="outro">
+
+
+  <!-- ======================================================
+       APPROVED OUTRO VIDEO
+       ====================================================== -->
+
+  <video
+
+    id="outroVideo"
+
+    class="outro__video"
+
+    autoplay
+
+    muted
+
+    loop
+
+    playsinline
+
+    preload="metadata"
+
+  >
+
+    <source
+
+      src="https://video.wixstatic.com/video/047d6b_797da783527f4afd93f9003d4715e043/1080p/mp4/file.mp4"
+
+      type="video/mp4"
+
+    >
+
+  </video>
+
+
+
+  <!-- ======================================================
+       EXACT HERO SHADE
+       ====================================================== -->
+
+  <div
+    class="outro__shade"
+    aria-hidden="true"
+  ></div>
+
+
+
+  <!-- ======================================================
+       POSITIONING ONLY
+       ====================================================== -->
+
+  <div class="outro__word-anchor">
+
+
+    <div
+
+      id="word"
+
+      class="outro__word"
+
+      data-text="DONE RIGHT."
+
+      aria-label="Done right."
+
+    >
+      DONE RIGHT.
+    </div>
+
+
+  </div>
+
+
+</section>
+
+
+
+<script>
+
+(() => {
+
+
+  /* =========================================================
+     ELEMENTS
+     ========================================================= */
+
+  const video =
+    document.getElementById(
+      'outroVideo'
+    );
+
+
+  const word =
+    document.getElementById(
+      'word'
+    );
+
+
+  if(
+    !video ||
+    !word
+  ){
+
+    return;
+
+  }
+
+
+
+  /* =========================================================
+     FADE RANGE
+
+     Uses almost the complete existing Outro runway.
+     ========================================================= */
+
+  const FADE_START =
+    0.025;
+
+
+  const FADE_END =
+    0.92;
+
+
+
+  /* =========================================================
+     TEMPORAL RESPONSE
+
+     Soft enough to hide wheel stepping without making
+     the typography feel disconnected from the scroll.
+     ========================================================= */
+
+  const RESPONSE_MS =
+    230;
+
+
+
+  /* =========================================================
+     STATE
+     ========================================================= */
+
+  let targetProgress =
+    0;
+
+
+  let currentReveal =
+    1;
+
+  // The iframe can be shorter than the page viewport. Its own visibility
+  // supplies the reveal independently of the existing Wix scroll runway.
+  let visibleProgress = 1;
+
+
+  let frameId =
+    0;
+
+
+  let lastFrameTime =
+    0;
+
+
+  let bridgeConnected =
+    false;
+
+
+  let readyTimer =
+    null;
+
+
+
+  /* =========================================================
+     HELPERS
+     ========================================================= */
+
+  const clamp = (
+    value,
+    min = 0,
+    max = 1
+  ) => {
+
+    return Math.min(
+      Math.max(
+        value,
+        min
+      ),
+      max
+    );
+
+  };
+
+
+  const range = (
+    value,
+    start,
+    end
+  ) => {
+
+    return clamp(
+
+      (
+        value -
+        start
+      ) /
+
+      (
+        end -
+        start
+      )
+
+    );
+
+  };
+
+
+
+  /* =========================================================
+     SOFT FADE
+
+     Zero velocity at beginning and end.
+     ========================================================= */
+
+  function fadeEase(
+    value
+  ){
+
+
+    const x =
+      clamp(
+        value,
+        0,
+        1
+      );
+
+
+    return (
+
+      0.5 -
+
+      (
+        Math.cos(
+          Math.PI *
+          x
+        ) *
+        0.5
+      )
+
+    );
+
+  }
+
+
+
+  /* =========================================================
+     TARGET REVEAL
+     ========================================================= */
+
+  function getTargetReveal(){
+
+
+    return fadeEase(
+
+      range(
+        Math.max(targetProgress, visibleProgress),
+        FADE_START,
+        FADE_END
+      )
+
+    );
+
+  }
+
+
+
+  /* =========================================================
+     APPLY REVEAL
+
+     IMPORTANT:
+
+     At reveal = 1 these values become EXACTLY:
+
+     base       1
+     stroke     .42
+     shadow 1   .11
+     shadow 2   .06
+     sweep 1    .01
+     sweep 2    .05
+     sweep 3    .46
+     sweep 4    .07
+     sweep 5    .01
+
+     i.e. exactly the Hero source.
+     ========================================================= */
+
+  function applyReveal(
+    reveal
+  ){
+
+
+    const r =
+      clamp(
+        reveal,
+        0,
+        1
+      );
+
+
+    word.style.setProperty(
+      '--base-a',
+      r.toFixed(4)
+    );
+
+
+    word.style.setProperty(
+      '--stroke-a',
+      (
+        0.42 *
+        r
+      ).toFixed(4)
+    );
+
+
+    word.style.setProperty(
+      '--shadow-1-a',
+      (
+        0.11 *
+        r
+      ).toFixed(4)
+    );
+
+
+    word.style.setProperty(
+      '--shadow-2-a',
+      (
+        0.06 *
+        r
+      ).toFixed(4)
+    );
+
+
+    word.style.setProperty(
+      '--sweep-1-a',
+      (
+        0.01 *
+        r
+      ).toFixed(4)
+    );
+
+
+    word.style.setProperty(
+      '--sweep-2-a',
+      (
+        0.05 *
+        r
+      ).toFixed(4)
+    );
+
+
+    word.style.setProperty(
+      '--sweep-3-a',
+      (
+        0.46 *
+        r
+      ).toFixed(4)
+    );
+
+
+    word.style.setProperty(
+      '--sweep-4-a',
+      (
+        0.07 *
+        r
+      ).toFixed(4)
+    );
+
+
+    word.style.setProperty(
+      '--sweep-5-a',
+      (
+        0.01 *
+        r
+      ).toFixed(4)
+    );
+
+  }
+
+
+
+  /* =========================================================
+     SOFT FRAME RESPONSE
+     ========================================================= */
+
+  function animate(
+    timestamp
+  ){
+
+
+    if(
+      !lastFrameTime
+    ){
+
+      lastFrameTime =
+        timestamp;
+
+    }
+
+
+    const delta =
+      Math.min(
+
+        timestamp -
+        lastFrameTime,
+
+        50
+
+      );
+
+
+    lastFrameTime =
+      timestamp;
+
+
+
+    const targetReveal =
+      getTargetReveal();
+
+
+
+    const response =
+
+      1 -
+
+      Math.exp(
+        -delta /
+        RESPONSE_MS
+      );
+
+
+
+    currentReveal +=
+
+      (
+        targetReveal -
+        currentReveal
+      ) *
+
+      response;
+
+
+
+    if(
+      Math.abs(
+        targetReveal -
+        currentReveal
+      ) <
+      0.0003
+    ){
+
+      currentReveal =
+        targetReveal;
+
+    }
+
+
+
+    applyReveal(
+      currentReveal
+    );
+
+
+
+    if(
+      Math.abs(
+        targetReveal -
+        currentReveal
+      ) >
+      0.0003
+    ){
+
+      frameId =
+        requestAnimationFrame(
+          animate
+        );
+
+    }
+    else{
+      frameId =
+        0;
+
+      lastFrameTime =
+        0;
+
+    }
+
+  }
+
+
+
+  /* =========================================================
+     NEW SCROLL TARGET
+     ========================================================= */
+
+  function queueProgress(
+    progress
+  ){
+
+
+    targetProgress =
+      clamp(
+        Number(
+          progress
+        ) ||
+        0,
+        0,
+        1
+      );
+
+
+    if(
+      !frameId
+    ){
+
+      lastFrameTime =
+        0;
+
+
+      frameId =
+        requestAnimationFrame(
+          animate
+        );
+
+    }
+
+  }
+
+
+
+  /* =========================================================
+     RECEIVE WIX OUTRO SCROLL
+     ========================================================= */
+
+  window.addEventListener(
+    'message',
+    event => {
+
+
+      const data =
+        event.data;
+
+
+      if(
+        !data ||
+        data.type !==
+        'ISOTROPE_OUTRO_SCROLL'
+      ){
+
+        return;
+
+      }
+
+
+
+      bridgeConnected =
+        true;
+
+
+
+      if(
+        readyTimer
+      ){
+
+        clearInterval(
+          readyTimer
+        );
+
+
+        readyTimer =
+          null;
+
+      }
+
+
+
+      /* =====================================================
+         PRIMARY NORMALIZED PROGRESS
+         ===================================================== */
+
+      if(
+        typeof data.progress ===
+        'number'
+      ){
+
+        queueProgress(
+          data.progress
+        );
+
+
+        return;
+
+      }
+
+
+
+      /* =====================================================
+         PIXEL FALLBACK
+
+         Existing 0.32 runway preserved.
+         ===================================================== */
+
+      if(
+        typeof data.scrollPx ===
+        'number'
+      ){
+
+
+        const vh =
+          Math.max(
+
+            Number(
+              data.viewportHeight
+            ) ||
+
+            window.innerHeight ||
+
+            1,
+
+            1
+
+          );
+
+
+        queueProgress(
+
+          data.scrollPx /
+
+          (
+            vh *
+            0.32
+          )
+
+        );
+
+      }
+
+    }
+  );
+
+
+
+  /* =========================================================
+     SCROLL RELAY
+
+     PRESERVES CURRENT ANTI-LOCK ARCHITECTURE
+     ========================================================= */
+
+  window.addEventListener(
+    'wheel',
+    event => {
+
+
+      if(
+        event.ctrlKey
+      ){
+
+        return;
+
+      }
+
+
+      try{
+
+
+        window.parent.postMessage(
+
+          {
+            type:
+              'ISOTROPE_SCROLL_INTENT',
+
+            channel:
+              'outro',
+
+            deltaY:
+              event.deltaY,
+
+            deltaMode:
+              event.deltaMode
+          },
+
+          '*'
+
+        );
+
+
+        event.preventDefault();
+
+
+      }
+      catch(_){}
+
+    },
+    {
+      passive:false,
+      capture:true
+    }
+  );
+
+
+
+  /* =========================================================
+     READY HANDSHAKE
+     ========================================================= */
+
+  function announceReady(){
+
+
+    if(
+      bridgeConnected
+    ){
+
+      return;
+
+    }
+
+
+    try{
+
+
+      window.parent.postMessage(
+
+        {
+          type:
+            'ISOTROPE_OUTRO_READY'
+        },
+
+        '*'
+
+      );
+
+
+    }
+    catch(_){}
+
+  }
+
+
+
+  /* =========================================================
+     VIDEO
+     ========================================================= */
+
+  video.muted =
+    true;
+
+
+  function ensureVideo(){
+
+
+    video.muted =
+      true;
+
+
+    video
+      .play()
+      .catch(
+        () => {}
+      );
+
+  }
+
+
+  video.addEventListener(
+    'canplay',
+    ensureVideo
+  );
+
+
+  video.addEventListener(
+    'loadeddata',
+    ensureVideo
+  );
+
+
+
+  /* =========================================================
+     INITIALIZATION
+     ========================================================= */
+
+  function init(){
+
+
+    targetProgress = 0;
+    currentReveal = 1;
+    applyReveal(1);
+
+    // Cross-frame visibility (including clipping by the parent viewport).
+    // At 70% visible the original X-Ray reaches its complete final state.
+    // Preserve the existing bridge and never require a full-height runway.
+    if ('IntersectionObserver' in window) {
+      const outro = document.querySelector('.outro');
+      const observer = new IntersectionObserver(entries => {
+        const entry = entries[entries.length - 1];
+        if (!entry) return;
+        visibleProgress = clamp(entry.intersectionRatio / 0.70);
+        queueProgress(targetProgress);
+      }, { threshold: Array.from({length: 21}, (_, i) => i / 20) });
+      observer.observe(outro);
+    }
+
+
+    ensureVideo();
+
+
+    announceReady();
+
+
+    readyTimer =
+      setInterval(
+        announceReady,
+        250
+      );
+
+  }
+
+
+  init();
+
+
+})();
+
+</script>
+
+
+</body>
+
+</html>
