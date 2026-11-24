@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>ISOTROPE — Why Isotrope</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  color-scheme: dark;
+  --deep: #340566;
+  --white: #ffffff;
+  --lavender: #a477eb;
+  --border: rgba(164,119,235,.38);
+  --copy: rgba(255,255,255,.84);
+  --gap: max(10px,1vw);
+  --corner: max(10px,1vw);
+  --title-size: max(18px,1.533333vw);
+  --copy-size: clamp(12px,.933333vw,18px);
+  --title-space: calc(var(--title-size) * 3);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html, body {
+  width: 100%; margin: 0; padding: 0;
+  background: var(--deep); color: var(--white);
+  font-family: Poppins, Arial, sans-serif;
+}
+.why { width: 100%; margin: 0; padding: 0; }
+.points {
+  display: grid;
+  grid-template-columns: repeat(8,minmax(0,1fr));
+  grid-auto-rows: 1fr;
+  align-items: stretch;
+  gap: var(--gap);
+}
+.point {
+  grid-column: span 2;
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--corner);
+  background: var(--deep);
+  padding: max(18px,2vw);
+  display: grid;
+  grid-template-rows: auto 1fr;
+  align-content: start;
+  align-items: start;
+  gap: max(10px,.8vw);
+  transition: background-color .28s ease,border-color .28s ease;
+}
+.point h2 {
+  min-block-size: var(--title-space);
+  font-size: var(--title-size);
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0;
+  margin: 0;
+  color: var(--white);
+  overflow-wrap: break-word;
+  transition: color .28s ease;
+}
+.point p {
+  font-size: var(--copy-size);
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0;
+  margin: 0;
+  color: var(--copy);
+  overflow-wrap: break-word;
+  transition: color .28s ease;
+}
+/* Desktop: four cards above, three equal-width cards centred below. */
+@media (min-width: 901px) {
+  .point:nth-child(5) { grid-column: 2 / span 2; }
+}
+/* Shared title and description tracks align every card within each row.
+   Progressive enhancement; reserved title height above is the fallback. */
+@supports (grid-template-rows: subgrid) {
+  .points { grid-auto-rows: auto 1fr; }
+  .point {
+    grid-row: span 2;
+    grid-template-rows: subgrid;
+    row-gap: max(10px,.8vw);
+  }
+}
+@media (hover:hover) and (pointer:fine) {
+  .point:hover {
+    background-color: #3e126e;
+    border-color: var(--lavender);
+  }
+  .point:hover h2 { color: #e1cfff; }
+  .point:hover p { color: var(--white); }
+}
+@media (min-width: 901px) and (max-width: 1150px) {
+  :root { --title-space: calc(var(--title-size) * 4.5); }
+}
+@media (max-width: 900px) {
+  .points { grid-template-columns: repeat(4,minmax(0,1fr)); }
+  .point { padding: 26px 22px; }
+  .point:last-child { grid-column: 2 / span 2; }
+}
+@media (max-width: 650px) {
+  :root { --title-size: 18px; --copy-size: 14px; --title-space: 0px; }
+  .points { grid-template-columns: 1fr; grid-auto-rows: auto; gap: 12px; }
+  .point, .point:last-child { grid-column: auto; grid-row: auto; grid-template-rows: auto auto; padding: 28px 24px; border-radius: 15px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; }
+}
+</style>
+</head>
+<body>
+<section class="why" aria-label="Why Isotrope">
+  <div class="points">
+    <article class="point">
+      <h2>Whole-of-life building know-how</h2>
+      <p>Our team has worked on buildings from façade installation through to maintenance, inspection and repair. We know how they're put together, so we fix them properly, with trade-quality work.</p>
+    </article>
+    <article class="point">
+      <h2>Tier 1 standards on every job</h2>
+      <p>Our IRATA-certified team has worked on some of Melbourne's largest projects, and brings the same safety standards and discipline to every job, large or small.</p>
+    </article>
+    <article class="point">
+      <h2>Root-cause fixes, not patch-ups</h2>
+      <p>Our engineering background means we trace every defect to its root cause, so your building gets lasting solutions, not a patchwork of quick fixes.</p>
+    </article>
+    <article class="point">
+      <h2>One team, inspection to repair</h2>
+      <p>The people who find the problem are the people who fix it, so nothing gets lost between the report and the works, and you deal with one team from start to finish.</p>
+    </article>
+    <article class="point">
+      <h2>Minimal disruption on site</h2>
+      <p>Rope access and drones reach hard-to-access areas quickly, keeping disruption to residents low and site programs moving.</p>
+    </article>
+    <article class="point">
+      <h2>Full package or extra hands</h2>
+      <p>We take on a full work package as lead contractor or slot in as skilled labour alongside your trades.</p>
+    </article>
+    <article class="point">
+      <h2>Insured and rescue-ready</h2>
+      <p>$20M public liability cover, with in-house rescue planning and standby rescue capability for work at height and in confined spaces.</p>
+    </article>
+  </div>
+</section>
+</body>
+</html>
