@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ISOTROPE — Reviews concept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--black:#000;--white:#fff;--grey:#a5a5a5;--border:#303030;--deep:#340566;--purple:#8b07d1;--lavender:#a477eb;--gap:max(12px,1vw);--radius:15px}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;width:100%;background:var(--black);color:var(--white);font-family:Poppins,Arial,sans-serif}
+.reviews{width:100%;min-width:0;margin:0;padding:0}
+.rail{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - var(--gap)*2)/3);gap:var(--gap);overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain;align-items:stretch;touch-action:pan-x pan-y}
+.rail::-webkit-scrollbar{display:none}
+.rail:focus-visible{outline:1px solid var(--lavender);outline-offset:-1px}
+.review{display:flex;flex-direction:column;min-width:0;border:1px solid var(--border);border-radius:var(--radius);padding:max(24px,2vw);scroll-snap-align:start;transition:border-color .25s,background-color .25s;background:var(--black)}
+.review-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:max(18px,1.6vw)}
+.stars{font-family:Arial,sans-serif;letter-spacing:3px;font-size:20px;color:var(--lavender)}
+.sample{font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--grey)}
+.review h2{font-size:max(18px,1.533333vw);font-weight:600;line-height:1.5;letter-spacing:0;margin:0 0 10px;min-height:3em}
+.quote{font-size:clamp(14px,.933333vw,18px);line-height:1.55;margin:0 0 max(24px,2vw);color:#d2d2d2;flex:1}
+.person{display:flex;align-items:center;gap:14px;min-width:0;margin:0 0 22px}
+.avatar{width:58px;height:58px;flex:0 0 58px;border-radius:50%;object-fit:cover;filter:grayscale(1);background:#222;border:1px solid #444}
+.name{font-size:14px;font-weight:600;line-height:1.4;margin:0}
+.role{font-size:12px;color:var(--grey);line-height:1.5;margin:4px 0 0}
+.project{border-top:1px solid var(--border);padding-top:18px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.project-label{font-size:12px;color:var(--grey);line-height:1.5}
+.project-button{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;border:1px solid var(--purple);border-radius:100px;background:var(--purple);color:white;text-decoration:none;font:500 12px/1.3 Poppins,Arial,sans-serif;padding:11px 17px;transition:background-color .25s,border-color .25s,color .25s}
+.project-button[aria-disabled=true]{cursor:default}
+.navigation{display:flex;align-items:center;gap:16px;margin:18px 0 0}
+.scrub{height:20px;display:flex;align-items:center;flex:1;min-width:0;cursor:pointer;touch-action:none;outline-offset:2px;position:relative}
+.scrub:focus-visible{outline:1px solid var(--lavender)}
+.track{height:2px;width:100%;background:#303030;position:relative}
+.thumb{position:absolute;left:0;top:0;width:50%;height:2px;background:var(--lavender);pointer-events:none}
+.count{color:var(--grey);font-size:12px;font-variant-numeric:tabular-nums;white-space:nowrap}
+@media(hover:hover) and (pointer:fine){.review:hover{border-color:var(--lavender);background:#0b0b0b}.project-button:not([aria-disabled=true]):hover{background:var(--lavender);border-color:var(--lavender);color:#000}}
+@media(max-width:1000px){.rail{grid-auto-columns:calc((100% - var(--gap))/2)}}
+@media(max-width:650px){.rail{grid-auto-columns:88%;gap:12px}.review{padding:24px}.review h2{font-size:18px;min-height:0}.quote{font-size:14px}.avatar{width:48px;height:48px;flex-basis:48px}.project{gap:10px}.navigation{margin-top:14px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<section class="reviews" aria-label="Client review layout demonstration">
+ <div class="rail" tabindex="0" aria-label="Horizontal review carousel"></div>
+ <div class="navigation"><div class="scrub" role="slider" tabindex="0" aria-label="Carousel position" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="track"><div class="thumb"></div></div></div><span class="count" aria-hidden="true"></span></div>
+</section>
+<script>
+(()=>{
+'use strict';
+const reviews=[
+ {headline:'Professional from start to finish.',review:'Example review text for evaluating the layout, typography and spacing of a client testimonial.',name:'Client name',role:'Project Manager',project:'Project 01',rating:5,photo:'',url:''},
+ {headline:'Reliable and technically skilled.',review:'Example review text for a longer testimonial, with room to describe the client experience, technical requirements and project delivery.',name:'Client name',role:'Site Manager',project:'Project 02',rating:5,photo:'',url:''},
+ {headline:'A team you can trust.',review:'Example review text to demonstrate the editorial hierarchy of the carousel and the connection to an individual project.',name:'Client name',role:'Building Manager',project:'Project 03',rating:5,photo:'',url:''},
+ {headline:'Clear communication throughout.',review:'Example review text for reviewing the horizontal scrolling behaviour and the appearance of an additional card.',name:'Client name',role:'Facilities Manager',project:'Project 04',rating:5,photo:'',url:''},
+ {headline:'Attention to every detail.',review:'Example review text to demonstrate a fifth card and the responsive behaviour of the complete carousel.',name:'Client name',role:'Project Director',project:'Project 05',rating:5,photo:'',url:''}
+];
+const rail=document.querySelector('.rail'),scrub=document.querySelector('.scrub'),track=scrub.querySelector('.track'),thumb=track.querySelector('.thumb'),count=document.querySelector('.count');
+const placeholder='data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" fill="#222"/><circle cx="32" cy="24" r="11" fill="#777"/><path d="M9 64V54a23 23 0 0 1 46 0v10" fill="#777"/></svg>');
+function el(tag,cls,txt){const n=document.createElement(tag);if(cls)n.className=cls;if(txt!==undefined)n.textContent=txt;return n}
+reviews.forEach(r=>{
+ const card=el('article','review'),top=el('div','review-top'),stars=el('span','stars','★'.repeat(r.rating)+'☆'.repeat(5-r.rating));
+ stars.setAttribute('aria-label','Sample rating: '+r.rating+' of 5');
+ top.append(stars,el('span','sample','Demo'));
+ const person=el('div','person'),photo=el('img','avatar');photo.src=r.photo||placeholder;photo.alt='';photo.width=58;photo.height=58;
+ const identity=el('div');identity.append(el('p','name',r.name),el('p','role',r.role));person.append(photo,identity);
+ const project=el('div','project'),button=el(r.url?'a':'span','project-button','View project');
+ if(r.url){button.href=r.url;button.target='_top'}else button.setAttribute('aria-disabled','true');
+ project.append(el('span','project-label',r.project),button);
+ card.append(top,el('h2','',r.headline),el('p','quote',r.review),person,project);rail.append(card);
+});
+const clamp=n=>Math.max(0,Math.min(1,n));
+const max=()=>Math.max(0,rail.scrollWidth-rail.clientWidth);
+function sync(){
+ const m=max(),p=m?clamp(rail.scrollLeft/m):0,w=rail.scrollWidth?Math.min(1,rail.clientWidth/rail.scrollWidth):1;
+ thumb.style.width=(100*w)+'%';thumb.style.left=(100*(1-w)*p)+'%';
+ scrub.setAttribute('aria-valuenow',String(Math.round(p*100)));
+ const step=rail.children.length>1?rail.children[1].offsetLeft-rail.children[0].offsetLeft:1;
+ count.textContent=String(Math.min(reviews.length,1+Math.round(rail.scrollLeft/Math.max(1,step)))).padStart(2,'0')+' / '+String(reviews.length).padStart(2,'0');
+}
+function setPosition(x){const r=track.getBoundingClientRect();if(r.width)rail.scrollLeft=clamp((x-r.left)/r.width)*max()}
+let dragging=false;
+scrub.addEventListener('pointerdown',e=>{if(e.button!==0)return;dragging=true;scrub.setPointerCapture(e.pointerId);rail.style.scrollSnapType='none';setPosition(e.clientX)});
+scrub.addEventListener('pointermove',e=>{if(dragging)setPosition(e.clientX)});
+function end(){dragging=false;rail.style.scrollSnapType=''}
+scrub.addEventListener('pointerup',end);scrub.addEventListener('pointercancel',end);scrub.addEventListener('lostpointercapture',end);
+scrub.addEventListener('keydown',e=>{const step=rail.children[0].getBoundingClientRect().width+parseFloat(getComputedStyle(rail).columnGap);let pos=rail.scrollLeft;if(e.key==='ArrowRight')pos+=step;else if(e.key==='ArrowLeft')pos-=step;else if(e.key==='Home')pos=0;else if(e.key==='End')pos=max();else return;e.preventDefault();rail.scrollTo({left:pos,behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'})});
+rail.addEventListener('scroll',sync,{passive:true});window.addEventListener('resize',sync,{passive:true});if('ResizeObserver'in window)new ResizeObserver(sync).observe(rail);if(document.fonts)document.fonts.ready.then(sync);sync();
+})();
+</script>
+</body>
+</html>
