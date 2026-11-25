@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ISOTROPE — Footer</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+:root{color-scheme:dark;--black:#000;--white:#fff;--purple:#8B07D1;--hover:#8D45FF;--accent:#A477EB;--muted:#A5A5A5;--rule:#292929}
+*{box-sizing:border-box}html,body{margin:0;padding:0;background:var(--black);color:var(--white)}body{font:400 clamp(14px,1.066667vw,16px)/1.55 Poppins,Arial,sans-serif}footer{width:100%;background:var(--black);padding:26px 0 24px}.main{display:grid;width:100%;grid-template-columns:repeat(3,minmax(0,1fr)) minmax(0,1fr);justify-content:stretch;column-gap:24px;align-items:start;padding-bottom:56px}.group{display:flex;flex-direction:column;align-items:flex-start;gap:8px;min-width:0}.group h2{font-size:15px;font-weight:700;line-height:1.4;letter-spacing:0;color:var(--hover);margin:0 0 10px;text-transform:uppercase}.group a,.legal a{color:var(--white);text-decoration:none}.group a:hover{color:var(--muted)}.legal a:hover{color:var(--white)}.contact{width:100%}.certification{min-width:0;align-items:flex-end;text-align:right;width:100%;justify-self:end}.irata-badge{display:block;width:auto;height:auto;max-width:min(100%,clamp(135px,16vw,225px));max-height:142px;object-fit:contain;object-position:right center}.certification p{margin:0;color:var(--muted);font-size:clamp(13px,1vw,16px);line-height:1.5}.contact p{margin:0}.phone{color:var(--white)}.legal{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:24px;border-top:1px solid var(--rule);padding-top:30px;color:var(--muted);font-size:clamp(12px,.933333vw,14px)}.legal a{font-size:inherit;color:var(--muted);justify-self:center}.top{display:flex;justify-self:end;align-items:center;gap:12px;color:var(--white);background:none;border:0;padding:0;cursor:pointer;font:400 13px/1.4 Poppins,Arial,sans-serif}.circle{border:1px solid var(--white);border-radius:50%;width:46px;height:46px;display:grid;place-items:center;transition:background .2s,border-color .2s}.top:hover .circle{background:var(--purple);border-color:var(--purple)}a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+@media(max-width:1050px){.main{column-gap:16px}.contact{max-width:none}}
+@media(max-width:750px){body{font-size:14px} .group h2{font-size:14px}footer{padding:32px 0 20px}.main{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px 16px;padding-bottom:44px} .certification{align-items:flex-start;text-align:left;width:100%}.irata-badge{object-position:left center}.contact{grid-column:auto;justify-self:start}.legal{grid-template-columns:1fr auto;gap:18px;padding-top:24px}.legal a{justify-self:start}.legal>span{grid-column:1/-1}.legal .top{justify-self:end}}
+.top{position:relative}.top-label{position:absolute;right:58px;white-space:nowrap;opacity:0;visibility:hidden;transition:opacity .2s}.top:hover .top-label,.top:focus-visible .top-label{opacity:1;visibility:visible}.contact a{overflow-wrap:anywhere}
+@media(max-width:420px){.main{grid-template-columns:1fr;gap:24px}.legal{grid-template-columns:1fr auto}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* Desktop embed: compact intrinsic height; no iframe scrollbar.
+   At 1500px, the complete content is approximately 295–300px tall.
+   Wix desktop HTML component: 300px high, without extra section padding.
+   Tablet/mobile retain their existing natural-height layout. */
+@media(min-width:751px){
+  html,body{width:100%;overflow:hidden;overscroll-behavior:auto}
+  footer{padding-top:8px;padding-bottom:8px}
+  .main{padding-bottom:44px}
+  .certification{overflow:hidden}
+  .irata-badge{transform:translateX(calc(10% - 15px))}
+  .legal{padding-top:24px;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:24px}
+  .legal>span{grid-column:1/3}
+  .legal>a{grid-column:3;justify-self:start}
+  .legal>.top{grid-column:4}
+}
+@media(min-width:751px) and (max-width:1050px){.legal{column-gap:16px}}
+</style>
+</head>
+<body>
+<footer aria-label="Site footer">
+<div class="main">
+  <nav class="group" aria-label="Company"><h2>Company</h2><a href="#" data-footer-action="about">About</a><a href="#" data-footer-action="how-we-work">How We Work</a><a href="#" data-footer-action="why-us">Why Us</a><a href="#" data-footer-action="team-experience">Team Experience</a></nav>
+  <nav class="group" aria-label="Our work"><h2>Our Work</h2><a href="#" data-footer-action="services">Services</a><a href="#" data-footer-action="projects">Projects</a><a href="#" data-footer-action="reviews">Reviews</a></nav>
+  <section class="group contact" aria-label="Contact"><h2>Get in Touch</h2><a href="mailto:admin@isotrope.com.au">admin@isotrope.com.au</a><p class="phone">+61 2 5550 1234</p><p>Melbourne, Australia</p></section>
+  <section class="group certification" aria-label="IRATA International"><img class="irata-badge" src="https://static.wixstatic.com/media/047d6b_5777d3503de84b1c88d9ae6d0c673824~mv2.png" alt="IRATA International — Industrial Rope Access Trade Association"></section>
+</div>
+<div class="legal"><span>© 2026 ISOTROPE. All rights reserved. · ABN 29 700 421 843</span><a href="https://miv-studio.wixstudio.com/isotrope-testing/privacy-policy" target="_top" data-footer-privacy>Privacy Policy</a><button class="top" type="button" aria-label="Back to top"><span class="top-label" aria-hidden="true">Back to top</span><span class="circle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 20V4M5 11l7-7 7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button></div>
+</footer>
+<script>
+// Footer navigation. Social links and official phone are pending.
+document.querySelectorAll('[data-placeholder]').forEach(a=>a.addEventListener('click',e=>e.preventDefault()));
+function send(action){
+  if(window.parent!==window)window.parent.postMessage({type:'ISOTROPE_FOOTER_V1_NAVIGATE',action},'*');
+}
+document.querySelectorAll('[data-footer-action]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();send(a.dataset.footerAction);}));
+document.querySelector('[data-footer-privacy]').addEventListener('click',e=>{if(window.parent!==window){e.preventDefault();send('privacy-policy');}});
+document.querySelector('.top').addEventListener('click',()=>{if(window.parent!==window)send('back-to-top');else window.scrollTo({top:0,behavior:'smooth'});});
+</script>
+</body></html>
