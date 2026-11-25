@@ -2,6 +2,10 @@
 
 Technical source repository for the ISOTROPE Wix Studio website.
 
+## Estado vigente — cierre 25-nov-2026
+
+**Leer primero:** [Footer V15 FULL — APROBADO / BLOQUEADO](docs/checkpoints/2026-11-25-FOOTER-LOCKED.md), junto con el [cierre integral 24-11](docs/checkpoints/2026-11-24-FINAL-HANDOFF.md). Estos checkpoints prevalecen sobre referencias históricas contradictorias de este README. No intervenir secciones bloqueadas sin orden expresa del usuario.
+
 ## Project direction
 
 ISOTROPE is positioned as a technical company that solves problems in hard-to-reach places. The visual hierarchy is:
