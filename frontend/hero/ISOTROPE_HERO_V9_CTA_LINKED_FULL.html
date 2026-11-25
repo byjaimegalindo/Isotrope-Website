@@ -1,0 +1,1109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>ISOTROPE — Hero V9 Brand Buttons</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg:#08090B;
+  --white:#FFFFFF;
+  --purple:#8B07D1;
+  --purple-hover:#8D45FF;
+  --purple-dark:#340566;
+
+  --gutter-desktop:clamp(24px,2vw,38px);
+  --gutter-tablet:28px;
+  --gutter-mobile:18px;
+}
+
+* {
+  box-sizing:border-box;
+}
+
+html,
+body {
+  margin:0;
+  width:100%;
+  min-height:100%;
+  background:var(--bg);
+  font-family:'Poppins',Arial,sans-serif;
+}
+
+body {
+  overflow:hidden;
+  touch-action:pan-y;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero {
+  position:relative;
+  width:100%;
+  min-height:100svh;
+  overflow:hidden;
+  isolation:isolate;
+  background:var(--bg);
+}
+
+
+/* =========================================================
+   VIDEO
+   ========================================================= */
+
+.hero__video {
+  position:absolute;
+  inset:0;
+
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+
+  z-index:-3;
+
+  transform:scale(1.01);
+
+  filter:
+    contrast(1.06)
+    brightness(.72);
+
+  will-change:transform,filter;
+}
+
+
+/* =========================================================
+   VIDEO SHADE
+   ========================================================= */
+
+.hero__shade {
+  position:absolute;
+  inset:0;
+
+  z-index:-2;
+
+  pointer-events:none;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(4,5,7,.72) 0%,
+      rgba(4,5,7,.38) 36%,
+      rgba(4,5,7,.14) 68%,
+      rgba(4,5,7,.06) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(4,5,7,.08) 0%,
+      rgba(4,5,7,.02) 53%,
+      rgba(4,5,7,.58) 100%
+    );
+}
+
+
+/* =========================================================
+   CONTENT
+   IMPORTANT:
+   NO transform here.
+   Keeps original difference / x-ray rendering intact.
+   ========================================================= */
+
+.hero__content {
+  position:relative;
+  top:0;
+
+  width:100%;
+  min-height:100svh;
+
+  margin:0;
+
+  padding:
+    108px
+    var(--gutter-desktop)
+    46px;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+
+  transition:none !important;
+  will-change:top;
+}
+
+
+/* =========================================================
+   EYEBROW
+   ========================================================= */
+
+.hero__eyebrow {
+  display:flex;
+  align-items:center;
+
+  gap:12px;
+
+  margin:0 0 22px;
+
+  color:rgba(255,255,255,.76);
+
+  font-size:13px;
+  font-weight:600;
+
+  line-height:1;
+
+  letter-spacing:.15em;
+
+  text-transform:uppercase;
+}
+
+.hero__eyebrow::before {
+  content:"";
+
+  width:34px;
+  height:1px;
+
+  border-radius:99px;
+
+  background:rgba(255,255,255,.92);
+}
+
+
+/* =========================================================
+   HEADLINE
+   ========================================================= */
+
+.headline {
+  position:relative;
+
+  width:100%;
+  max-width:none;
+
+  margin:0;
+
+  font-family:'Archivo Black',Arial,sans-serif;
+
+  font-size:clamp(54px,6.7vw,122px);
+  font-weight:400;
+
+  line-height:.98;
+
+  letter-spacing:-.045em;
+
+  text-transform:uppercase;
+
+  text-wrap:balance;
+}
+
+
+/* =========================================================
+   XRAY
+   ========================================================= */
+
+.xray-line {
+  position:relative;
+
+  display:block;
+
+  width:max-content;
+  max-width:100%;
+
+  color:#fff;
+
+  mix-blend-mode:difference;
+
+  filter:contrast(1.16);
+}
+
+
+.xray-line::before {
+  content:attr(data-text);
+
+  position:absolute;
+  inset:0;
+
+  pointer-events:none;
+
+  color:transparent;
+
+  -webkit-text-stroke:
+    .75px
+    rgba(255,255,255,.42);
+
+  text-shadow:
+    0 0 5px rgba(255,255,255,.11),
+    0 0 13px rgba(255,255,255,.06);
+
+  mix-blend-mode:screen;
+
+  opacity:.68;
+}
+
+
+.xray-line::after {
+  content:attr(data-text);
+
+  position:absolute;
+  inset:0;
+
+  pointer-events:none;
+
+  color:transparent;
+
+  background:
+    linear-gradient(
+      108deg,
+      rgba(255,255,255,.01) 0%,
+      rgba(255,255,255,.05) 31%,
+      rgba(255,255,255,.46) 48%,
+      rgba(255,255,255,.07) 58%,
+      rgba(255,255,255,.01) 100%
+    );
+
+  background-size:230% 100%;
+  background-position:145% 0;
+
+  -webkit-background-clip:text;
+  background-clip:text;
+
+  -webkit-text-fill-color:transparent;
+
+  mix-blend-mode:screen;
+
+  animation:
+    xraySweep
+    8.2s
+    cubic-bezier(.45,0,.18,1)
+    infinite;
+}
+
+
+@keyframes xraySweep {
+
+  0%,
+  62% {
+    background-position:145% 0;
+    opacity:.10;
+  }
+
+  69% {
+    opacity:.55;
+  }
+
+  84% {
+    opacity:.30;
+  }
+
+  96%,
+  100% {
+    background-position:-120% 0;
+    opacity:.08;
+  }
+}
+
+
+/* =========================================================
+   BOTTOM
+   ========================================================= */
+
+.hero__bottom {
+  width:100%;
+
+  display:flex;
+
+  justify-content:space-between;
+  align-items:flex-end;
+
+  gap:48px;
+
+  margin-top:20px;
+}
+
+
+.hero__copy {
+  max-width:600px;
+
+  margin:0;
+
+  color:rgba(255,255,255,.79);
+
+  font-size:
+    clamp(17px,1.15vw,20px);
+
+  line-height:1.58;
+
+  font-weight:400;
+
+  letter-spacing:-.012em;
+}
+
+
+.hero__actions {
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+  flex-wrap:wrap;
+}
+
+
+/* =========================================================
+   BRAND BUTTONS — ISOTROPE V8
+   8px corners. Only colour changes on hover.
+   Palette: Electric Purple -> Brand Purple.
+   ========================================================= */
+.btn {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  min-height:50px;
+  padding:0 28px;
+  border:1px solid transparent;
+  border-radius:8px;
+  appearance:none;
+  -webkit-appearance:none;
+  background:transparent;
+  color:#fff;
+  font-family:'Poppins',Arial,sans-serif;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.085em;
+  line-height:1.2;
+  text-transform:uppercase;
+  text-decoration:none;
+  white-space:nowrap;
+  cursor:pointer;
+  box-shadow:none;
+  transform:none;
+  transition:background-color .24s ease, border-color .24s ease, color .24s ease;
+}
+.btn > span { position:relative; }
+.btn--primary {
+  background:var(--purple);
+  border-color:var(--purple);
+}
+.btn--primary:hover {
+  background:var(--purple-hover);
+  border-color:var(--purple-hover);
+}
+.btn--secondary {
+  background:transparent;
+  border-color:transparent;
+  color:#fff;
+  padding-inline:18px;
+}
+.btn--secondary span {
+  border-bottom:1px solid currentColor;
+  padding-bottom:4px;
+}
+.btn--secondary:hover {
+  color:#A477EB;
+  background:transparent;
+  border-color:transparent;
+}
+.btn:focus-visible {
+  outline:2px solid #A477EB;
+  outline-offset:4px;
+}
+@media (prefers-reduced-motion:reduce) {
+  .btn { transition:none; }
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width:1000px) {
+
+  .hero__content {
+    padding:
+      96px
+      var(--gutter-tablet)
+      34px;
+  }
+
+
+  .headline {
+    font-size:
+      clamp(48px,7.2vw,92px);
+
+    line-height:.92;
+
+    letter-spacing:-.030em;
+  }
+
+
+  .hero__eyebrow {
+    margin-bottom:18px;
+  }
+
+
+  .hero__bottom {
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:26px;
+
+    margin-top:20px;
+  }
+
+
+  .hero__copy {
+    max-width:560px;
+
+    font-size:18px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width:750px) {
+
+  .hero {
+    min-height:100svh;
+  }
+
+
+  .hero__content {
+    min-height:100svh;
+
+    padding:
+      84px
+      var(--gutter-mobile)
+      24px;
+  }
+
+
+  .hero__eyebrow {
+    max-width:90%;
+
+    gap:9px;
+
+    margin-bottom:16px;
+
+    font-size:11px;
+
+    line-height:1.35;
+
+    letter-spacing:.125em;
+  }
+
+
+  .hero__eyebrow::before {
+    width:24px;
+
+    flex:0 0 24px;
+  }
+
+
+  .headline {
+    font-size:
+      clamp(29px,8.1vw,57px);
+
+    line-height:.94;
+
+    letter-spacing:-.028em;
+  }
+
+
+  .hero__bottom {
+    gap:22px;
+
+    margin-top:18px;
+  }
+
+
+  .hero__copy {
+    max-width:100%;
+
+    font-size:17px;
+
+    line-height:1.56;
+  }
+
+
+  .hero__actions {
+    width:100%;
+
+    gap:8px;
+  }
+
+
+  .btn {
+    min-height:48px;
+
+    padding-left:18px;
+  }
+}
+
+
+@media (max-width:520px) {
+
+  .hero__actions {
+    flex-direction:column;
+
+    align-items:stretch;
+  }
+
+
+  .btn {
+    width:100%;
+
+    justify-content:space-between;
+  }
+}
+
+
+@media (prefers-reduced-motion:reduce) {
+
+  .xray-line::after {
+    animation:none;
+  }
+
+  .btn {
+    transition:none;
+  }
+}
+
+
+/* =========================================================
+   TRUE BLACKOUT
+   ========================================================= */
+
+.hero__blackout {
+  position:absolute;
+
+  inset:0;
+
+  z-index:50;
+
+  pointer-events:none;
+
+  background:#000;
+
+  opacity:0;
+
+  will-change:opacity;
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<section class="hero">
+
+
+  <video
+    class="hero__video"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="metadata"
+  >
+
+    <source
+      src="https://video.wixstatic.com/video/047d6b_609aac39aa5f4f6791e03351f4089d25/1080p/mp4/file.mp4"
+      type="video/mp4"
+    >
+
+  </video>
+
+
+  <div class="hero__shade"></div>
+
+
+  <div
+    class="hero__blackout"
+    id="heroBlackout"
+    aria-hidden="true"
+  ></div>
+
+
+
+  <div class="hero__content">
+
+
+    <p class="hero__eyebrow">
+      SPECIALIST ROPE ACCESS · MELBOURNE
+    </p>
+
+
+    <h1
+      class="headline"
+      aria-label="Expertise where it matters"
+    >
+
+      <span
+        class="xray-line"
+        data-text="EXPERTISE WHERE"
+      >
+        EXPERTISE WHERE
+      </span>
+
+
+      <span
+        class="xray-line"
+        data-text="IT MATTERS."
+      >
+        IT MATTERS.
+      </span>
+
+    </h1>
+
+
+
+    <div class="hero__bottom">
+
+
+      <p class="hero__copy">
+        Safe, expert access to hard-to-reach buildings and structures. From inspection and diagnostics to maintenance, remediation and construction support.
+      </p>
+
+
+
+      <div class="hero__actions">
+        <!-- Native Wix CTA navigation. -->
+        <button class="btn btn--primary" type="button" aria-label="Explore our services" data-hero-action="services">
+          <span>Explore our services</span>
+        </button>
+        <button class="btn btn--secondary" type="button" aria-label="Talk to our team" data-hero-action="contact">
+          <span>Talk to our team</span>
+        </button>
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+</section>
+
+
+
+<script>
+(() => {
+
+  const content =
+    document.querySelector('.hero__content');
+
+  const video =
+    document.querySelector('.hero__video');
+
+  const blackout =
+    document.getElementById('heroBlackout');
+
+
+  if (!content || !video || !blackout) {
+    return;
+  }
+
+
+  /* =========================================================
+     HELPERS
+     ========================================================= */
+
+  const clamp = (v, min = 0, max = 1) =>
+    Math.min(
+      Math.max(v, min),
+      max
+    );
+
+
+  const range = (v, start, end) =>
+    clamp(
+      (v - start) /
+      (end - start)
+    );
+
+
+  const smooth = (t) =>
+    t * t * (3 - 2 * t);
+
+
+  /* =========================================================
+     TRUE 1:1 SCROLL STATE
+
+     IMPORTANT:
+     - NO lerp.
+     - NO easing on content.
+     - NO reverse-pixel filter.
+     - NO second requestAnimationFrame queue.
+     - The latest Wix scroll pixel value is applied immediately.
+     ========================================================= */
+
+  let lastAppliedY = Number.NaN;
+  let lastSequence = -1;
+
+  let lastVideoTransform = '';
+  let lastVideoFilter = '';
+  let lastBlackoutOpacity = '';
+
+
+  function renderFrame(
+    rawScrollPx,
+    viewportHeight
+  ) {
+
+    const y =
+      Math.max(
+        Number(rawScrollPx) || 0,
+        0
+      );
+
+
+    const vh =
+      Math.max(
+        Number(viewportHeight) ||
+        window.innerHeight ||
+        1,
+        1
+      );
+
+
+    /* =======================================================
+       CONTENT — TRUE 1:1
+
+       1px Wix scroll = 1px Hero content movement.
+       ======================================================= */
+
+    if (y !== lastAppliedY) {
+
+      content.style.top =
+        `${-y}px`;
+
+      lastAppliedY =
+        y;
+
+    }
+
+
+    /* =======================================================
+       CINEMATIC CALCULATION
+
+       Does NOT affect content movement.
+       ======================================================= */
+
+    const s =
+      y / vh;
+
+
+    /* =======================================================
+       VIDEO
+       ======================================================= */
+
+    const holdP =
+      smooth(
+        range(
+          s,
+          1.02,
+          1.68
+        )
+      );
+
+
+    const scale =
+      1.008 +
+      (0.014 * holdP);
+
+
+    const videoTransform =
+      `scale(${scale.toFixed(4)})`;
+
+    if (videoTransform !== lastVideoTransform) {
+
+      video.style.transform =
+        videoTransform;
+
+      lastVideoTransform =
+        videoTransform;
+
+    }
+
+
+    const videoFilter =
+      `contrast(${(
+        1.06 +
+        0.008 * holdP
+      ).toFixed(4)}) brightness(${(
+        0.72 -
+        0.035 * holdP
+      ).toFixed(4)})`;
+
+    if (videoFilter !== lastVideoFilter) {
+
+      video.style.filter =
+        videoFilter;
+
+      lastVideoFilter =
+        videoFilter;
+
+    }
+
+
+    /* =======================================================
+       BLACKOUT
+       ======================================================= */
+
+    const blackP =
+      smooth(
+        range(
+          s,
+          0.61,
+          1.50
+        )
+      );
+
+
+    const blackoutOpacity =
+      s >= 1.50
+        ? '1'
+        : blackP.toFixed(4);
+
+
+    if (
+      blackoutOpacity !==
+      lastBlackoutOpacity
+    ) {
+
+      blackout.style.opacity =
+        blackoutOpacity;
+
+      lastBlackoutOpacity =
+        blackoutOpacity;
+
+    }
+
+  }
+
+
+  /* =========================================================
+     MESSAGE RECEIVER FROM WIX
+
+     Primary protocol:
+     scrollPx + viewportHeight + sequence
+
+     Legacy fallbacks remain supported.
+     ========================================================= */
+
+  window.addEventListener(
+    'message',
+    (event) => {
+
+      const data =
+        event.data;
+
+
+      if (
+        !data ||
+        data.type !==
+        'ISOTROPE_HERO_SCROLL'
+      ) {
+
+        return;
+
+      }
+
+
+      /* =====================================================
+         SEQUENCE PROTECTION
+
+         An older async message can never overwrite a newer
+         scroll position.
+         ===================================================== */
+
+      if (
+        typeof data.sequence ===
+        'number'
+      ) {
+
+        if (
+          data.sequence <
+          lastSequence
+        ) {
+
+          return;
+
+        }
+
+
+        lastSequence =
+          data.sequence;
+
+      }
+
+
+      /* =====================================================
+         PRIMARY — EXACT PIXELS, APPLIED IMMEDIATELY
+         ===================================================== */
+
+      if (
+        typeof data.scrollPx ===
+        'number'
+      ) {
+
+        renderFrame(
+          data.scrollPx,
+          data.viewportHeight
+        );
+
+        return;
+
+      }
+
+
+      /* =====================================================
+         OLD scrollVh SUPPORT
+         ===================================================== */
+
+      if (
+        typeof data.scrollVh ===
+        'number'
+      ) {
+
+        const vh =
+          Number(
+            data.viewportHeight
+          ) ||
+          window.innerHeight;
+
+
+        renderFrame(
+          data.scrollVh * vh,
+          vh
+        );
+
+        return;
+
+      }
+
+
+      /* =====================================================
+         LEGACY progress SUPPORT
+         ===================================================== */
+
+      if (
+        typeof data.progress ===
+        'number'
+      ) {
+
+        const vh =
+          Number(
+            data.viewportHeight
+          ) ||
+          window.innerHeight;
+
+
+        renderFrame(
+          clamp(
+            data.progress,
+            0,
+            1
+          ) *
+          vh *
+          2.60,
+          vh
+        );
+
+      }
+
+    }
+  );
+
+
+
+  /* =========================================================
+     SCROLL RELAY TO WIX PARENT
+
+     Prevents the HTML iframe from swallowing wheel gestures.
+     The parent bridge (Custom Embed revision 13) applies the
+     delta directly to the Wix page scroller.
+     ========================================================= */
+
+  window.addEventListener(
+    'wheel',
+    (event) => {
+
+      if (event.ctrlKey) {
+        return;
+      }
+
+      try {
+
+        window.parent.postMessage(
+          {
+            type:'ISOTROPE_SCROLL_INTENT',
+            channel:'hero',
+            deltaY:event.deltaY,
+            deltaMode:event.deltaMode
+          },
+          '*'
+        );
+
+        event.preventDefault();
+
+      } catch (_) {}
+
+    },
+    {
+      passive:false,
+      capture:true
+    }
+  );
+
+
+  /* =========================================================
+     HTML READY
+     ========================================================= */
+
+  try {
+
+    window.parent.postMessage(
+      {
+        type:
+          'ISOTROPE_HERO_READY'
+      },
+      '*'
+    );
+
+  } catch (_) {}
+
+
+  /* =========================================================
+     INITIAL STATE
+     ========================================================= */
+
+  // CTA navigation only; existing scroll and video logic remain untouched.
+  document.querySelectorAll('[data-hero-action]').forEach(button => {
+    button.addEventListener('click', () => {
+      window.parent.postMessage({type:'ISOTROPE_HERO_V1_NAVIGATE', action:button.dataset.heroAction}, '*');
+    });
+  });
+
+  renderFrame(
+    0,
+    window.innerHeight
+  );
+
+
+})();
+</script>
+
+
+</body>
+</html>
